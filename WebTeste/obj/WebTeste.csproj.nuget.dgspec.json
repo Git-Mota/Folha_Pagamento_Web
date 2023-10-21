@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Junior\\Desktop\\Estudos\\Programação\\Web\\Asp Net\\WebTeste\\WebTeste\\WebTeste.csproj": {}
+    "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\WebTeste.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Junior\\Desktop\\Estudos\\Programação\\Web\\Asp Net\\WebTeste\\WebTeste\\WebTeste.csproj": {
+    "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\WebTeste.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Junior\\Desktop\\Estudos\\Programação\\Web\\Asp Net\\WebTeste\\WebTeste\\WebTeste.csproj",
+        "projectUniqueName": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\WebTeste.csproj",
         "projectName": "WebTeste",
-        "projectPath": "C:\\Users\\Junior\\Desktop\\Estudos\\Programação\\Web\\Asp Net\\WebTeste\\WebTeste\\WebTeste.csproj",
+        "projectPath": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\WebTeste.csproj",
         "packagesPath": "C:\\Users\\Junior\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Junior\\Desktop\\Estudos\\Programação\\Web\\Asp Net\\WebTeste\\WebTeste\\obj\\",
+        "outputPath": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Junior\\AppData\\Roaming\\NuGet\\NuGet.Config",
