@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FeriasModel>
+
+@{
+    ViewData["Title"] = "Consultar Férias";
+}
+</div>
+
+<h1 class="display-4">Consultar Férias</h1>
+<br />
+<form method="post" asp-action="ConsultarFerias">
+    <input type="number" name="RecId" placeholder="Digite o valor do Id">
+    <button type="submit">Consultar</button>
+</form>
+<br />
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#IdFunc</th>
+      <th scope="col">Data de Inicio</th>
+      <th scope="col">Data Final</th>
+      <th scope="col">Parcela</th>
+      <th scope="col">Quantidades de dias</th>
+      <th scope="col">Ano Aquisitivo</th>
+      <th scope="col">Ferias Pendentes</th>
+    </tr>
+  </thead>
+  <tbody>
+      @if (Model != null)
+        {
+
+            @foreach(var ferias in Model)
+            {
+             <tr>
+                <th scope="row">@ferias.Tb_IdFuncionario</th>
+                <td>@ferias.Tb_DataInicioFerias</td>
+                <td>@ferias.Tb_DataFinalFerias</td>
+                <td>@ferias.Tb_ParcelaFerias</td>
+                <td>@ferias.Tb_QuantidadeDiasParcela</td>
+                <td>@ferias.Tb_AnoAquisitivo</td>
+                <td>@ferias.Tb_QuantidadeFeriasPendentes</td>
+            </tr>
+            }
+        }
+
+  </tbody>
+</table>

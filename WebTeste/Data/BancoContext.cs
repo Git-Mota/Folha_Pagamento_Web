@@ -1,0 +1,16 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using WebTeste.Models;
+
+namespace WebTeste.Data
+{
+    public class BancoContext : DbContext 
+    {
+        public BancoContext(DbContextOptions<BancoContext> options): base (options)
+        {
+
+        }
+
+        public DbSet<FeriasModel> Tab_Ferias { get; set; }
+    }
+}
