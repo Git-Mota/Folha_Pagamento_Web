@@ -50,5 +50,6 @@ namespace WebTeste.Controllers
             var feriasSQL = _bancoContext.Tab_Ferias.FromSqlRaw("SELECT * FROM Tab_Ferias WHERE Tab_Ferias.Tb_IdFuncionario = {0}",RecId).ToList();
             return View(feriasSQL);
         }
+
     }
 }

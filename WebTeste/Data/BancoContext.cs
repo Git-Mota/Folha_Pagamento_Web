@@ -12,5 +12,6 @@ namespace WebTeste.Data
         }
 
         public DbSet<FeriasModel> Tab_Ferias { get; set; }
+        public DbSet<DadosFuncionarioEFeriasModel> Tab_Funcionario_Ferias { get;set; }
     }
 }
