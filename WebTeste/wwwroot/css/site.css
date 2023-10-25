@@ -17,3 +17,9 @@ body {
     margin-bottom: 60px;
     background: linear-gradient(#d1ced1, #daa84b);
 }
+
+.cabecalho-classe {
+    background-color: blue;
+    /* Outras propriedades de estilo, se necessário */
+}
+
