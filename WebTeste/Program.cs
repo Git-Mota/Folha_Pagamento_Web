@@ -36,7 +36,7 @@ internal class Program
 
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Home}/{action=Index}/{id?}");
+            pattern: "{controller=TelaLogin}/{action=login}/{id?}");
 
         app.Run();
     }
