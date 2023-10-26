@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<PontoModel>
 
 @{
     ViewData["Title"] = "Ponto";
@@ -16,28 +16,37 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Nome</th>
-      <th scope="col">CPF</th>
+      <th scope="col">Departamento</th>
       <th scope="col">Data</th>
-      <th scope="col">Localidade</th>
-      <th scope="col">Inico Almoço</th>
-      <th scope="col">Termino Almoço</th>
+      <th scope="col">Dia da Semana</th>
       <th scope="col">Entrada</th>
+      <th scope="col">Inico Almoço</th>
+      <th scope="col">Término Almoço</th>
+      <th scope="col">Inicio Pausa</th>
+      <th scope="col">Término Pausa</th>
       <th scope="col">Saida</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>44963754860</td>
-      <td>20/10/2023</td>
-      <td>HomeOffice</td>
-      <td>12:00:23</td>
-      <td>13:00:34</td>
-      <td>08:03:13</td>
-      <td>16:00:48</td>
-    </tr>
+        @if (Model != null)
+        {   
+            @foreach(var ponto in Model)
+            {
+             <tr>
+                 <td>@ponto.Nome</td>
+                 <td>@ponto.Departamento</td>
+                 <td>@ponto.Data.ToString("dd-MM-yyyy")</td>
+                 <td>@ponto.DiaSemana</td>
+                 <td>@ponto.HoraEntrada</td>
+                 <td>@ponto.HoraInicioAlmoco</td>
+                 <td>@ponto.HoraRetornoAlmoco</td>
+                 <td>@ponto.HoraInicioPausa</td>
+                 <td>@ponto.HoraRetornoPausa</td>
+                 <td>@ponto.HoraSaida</td>
+            </tr> 
+            }
+        }
+
   </tbody>
 </table>
