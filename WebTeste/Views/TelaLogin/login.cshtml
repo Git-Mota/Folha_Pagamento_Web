@@ -13,22 +13,16 @@
 <body>
     <div class="login-box">
         <h2>Acesso Funcionário</h2>
-        <form>
+        <form method="post" asp-action="Login">
             <div class="user-box">
-                <input type="text" name="" required="">
-                <label>Chapa</label>
+                <input type="text" name="db_Cpf" required="">
+                <label>CPF</label>
             </div>
             <div class="user-box">
-                <input type="password" name="" required="">
+                <input type="password" name="db_Senha" required="">
                 <label>Senha</label>
             </div>
-            <a  class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Acessar
-            </a>
+             <button type="submit">Acessar</button>
 
         </form>
     </div>
