@@ -6,9 +6,9 @@ namespace WebTeste.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index(/*HomeModel viewModel*/)
+        public IActionResult Index(HomeModel viewModel)
         {
-            return View(/*viewModel*/);
+            return View(viewModel);
         }
 
 
