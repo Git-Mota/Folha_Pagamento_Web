@@ -23,7 +23,7 @@ namespace WebTeste.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Login(UsuarioModel model)
+        public IActionResult ValidaLogin(UsuarioModel model)
         { 
 
             var usuario = _bancoContext.Tab_Usuario.FirstOrDefault(usr => usr.db_Cpf == model.db_Cpf && usr.db_Senha == model.db_Senha);
