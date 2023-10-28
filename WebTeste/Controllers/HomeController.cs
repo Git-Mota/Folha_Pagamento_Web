@@ -6,12 +6,9 @@ namespace WebTeste.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(HomeModel viewModel)
         {
-            HomeModel home = new HomeModel();  
-            home.Nome = "João";
-            home.Email= "João@gmail.com";
-            return View(home);
+            return View(viewModel);
         }
 
 

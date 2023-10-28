@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace WebTeste.Controllers
 {
-    
+
     public class TelaLoginController : Controller
     {
         private readonly BancoContext _bancoContext;
@@ -24,20 +24,25 @@ namespace WebTeste.Controllers
         }
         [HttpPost]
         public IActionResult Login(UsuarioModel model)
-        {
+        { //apagar o comentário para retornar validação de senha.
+
             var usuario = _bancoContext.Tab_Usuario.FirstOrDefault(usr => usr.db_Cpf == model.db_Cpf && usr.db_Senha == model.db_Senha);
             if (usuario != null)
             {
-                return RedirectToAction("Index","Home");
+                var funcionario = _bancoContext.Tab_Funcionario.FirstOrDefault(func => func.Id == usuario.db_Id_Funcionario);
+                var nome = funcionario.NomeCompleto;
+                var departamento = funcionario.tb_Departamento;
+                if (funcionario != null)
+                {
+                    var viewModel = new HomeModel()
+                    {
+                        Nome = funcionario.NomeCompleto
+                    };
+                    return RedirectToAction("Index", "Home",viewModel);
+                }
             }
-            else
-            {
-                ViewBag.ErroMessage = "CPF ou senha invalidos";
-                return View();
-            }
+            ViewBag.ErroMessage = "CPF ou senha invalidos";
+            return View();
         }
-  
-
-        
     }
 }
