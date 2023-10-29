@@ -20,7 +20,11 @@ namespace WebTeste.Controllers
         }
         public IActionResult Login()
         {
-            return View();
+                if (TempData["Mensagem"] != null)
+    {
+                 ViewBag.Mensagem = TempData["Mensagem"];
+    }
+                 return View();
         }
         [HttpPost]
         public IActionResult ValidaLogin(UsuarioModel model)
@@ -47,17 +51,13 @@ namespace WebTeste.Controllers
                     // Faça a autenticação do usuário com o ClaimsPrincipal
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
 
-                    /*
-                    var viewModel = new HomeModel()
-                    {
-                        Nome = funcionario.NomeCompleto
-                    };
-                    */
-                    return RedirectToAction("Index", "Home"/*,viewModel*/);
+                    TempData["Mensagem"] = null;
+                    return RedirectToAction("Index", "Home");
                 }
             }
-            ViewBag.ErroMessage = "CPF ou senha invalidos";
-            return View();
+            TempData["Mensagem"] = "Usuario ou senha incorretos, tente novamente.";
+            ViewBag.Mensagem = TempData["Mensagem"];
+            return RedirectToAction("Login");
         }
     }
 }

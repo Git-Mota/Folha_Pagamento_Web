@@ -8,7 +8,15 @@ namespace WebTeste.Controllers
     {
         public IActionResult Index(/*HomeModel viewModel*/)
         {
-            return View(/*viewModel*/);
+            var nomeCompleto = User.Identity.Name;
+            if (nomeCompleto == null)
+            {
+                TempData["Mensagem"] = "Por favor, faça login para acessar esta página.";
+                return RedirectToAction("Login", "TelaLogin");
+            }
+
+            return View();
+            
         }
 
 
