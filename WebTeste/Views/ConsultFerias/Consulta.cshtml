@@ -1,30 +1,22 @@
-﻿@model IEnumerable<DadosFuncionarioEFeriasModel>
+﻿@model IEnumerable<ConsultFeriasModel>
 
 @{
-    ViewData["Title"] = "Consultar Férias TESTE";
+    ViewData["Title"] = "Consultar Férias";
 }
 </div>
 
-<h1 class="display-4">Consultar Férias TESTE</h1>
-<br />
-<form method="post" asp-action="ConsultarFeriasTeste">
-    <input type="number" name="RecId" placeholder="Digite o valor do Id">
-    <button type="submit">Consultar</button>
-</form>
-<br />
+<h1 class="display-4">Consultar Férias</h1>
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Id Funcionario</th>
       <th scope="col">Nome</th>
       <th scope="col">CPF</th>
       <th scope="col">Departamento</th>
-      <th scope="col">Localidade</th>
       <th scope="col">Data de Inicio</th>
       <th scope="col">Data Final</th>
-      <th scope="col">Parcela</th>
       <th scope="col">Quantidades de dias</th>
+      <th scope="col">Período aquisitivo</th>
     </tr>
   </thead>
   <tbody>
@@ -38,9 +30,11 @@
                 <td>@ferias.Nome</td>
                 <td>@ferias.CPF</td>
                 <td>@ferias.Departamento</td>
-                <td>@ferias.Localidade</td>
-                <td>@ferias.DataInicioFerias</td>
-                <td>@ferias.DataTerminoFerias</td>
+                <td>@ferias.DataInicioFerias.ToString("dd/MM/yyyy")</td>
+                <td>@ferias.DataTerminoFerias.ToString("dd/MM/yyyy")</td>
+                <td>@ferias.QuantDias</td>
+                <td>@ferias.AnoAquisitivo</td>
+
 
             </tr>
             }

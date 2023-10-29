@@ -20,11 +20,11 @@ namespace WebTeste.Controllers
         }
         public IActionResult Login()
         {
-                if (TempData["Mensagem"] != null)
-    {
-                 ViewBag.Mensagem = TempData["Mensagem"];
-    }
-                 return View();
+        if (TempData["Mensagem"] != null)
+         {
+            ViewBag.Mensagem = TempData["Mensagem"];
+         }
+            return View();
         }
         [HttpPost]
         public IActionResult ValidaLogin(UsuarioModel model)
@@ -36,15 +36,19 @@ namespace WebTeste.Controllers
                 var funcionario = _bancoContext.Tab_Funcionario.FirstOrDefault(func => func.Id == usuario.db_Id_Funcionario);
                 var nome = funcionario.NomeCompleto;
                 var departamento = funcionario.tb_Departamento;
+                
                 if (funcionario != null)
                 {
                     // Crie um ClaimsIdentity com as informações do funcionário
                     var claims = new List<Claim>
                     {
+                        new Claim("Id_Func",funcionario.Id.ToString()),
                         new Claim(ClaimTypes.Name, funcionario.NomeCompleto),
                         new Claim("Departamento", funcionario.tb_Departamento)
                     };
-                    
+
+                    var identity = new ClaimsIdentity(claims, "FuncionarioIdentity");
+                    var principal = new ClaimsPrincipal(identity);
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     // Crie um ClaimsPrincipal com o ClaimsIdentity
                     var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);

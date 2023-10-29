@@ -16,20 +16,8 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Junior\Documents\GitHub\WebTeste\WebTeste
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Junior/Documents/GitHub/WebTeste/WebTeste/Views/DadosFunEFerias/Teste.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFkb3NGdW5FRmVyaWFzXFRlc3RlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Junior/Documents/GitHub/WebTeste/WebTeste/Views/Ferias/AdicionarFerias.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmVyaWFzXEFkaWNpb25hckZlcmlhcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Junior/Documents/GitHub/WebTeste/WebTeste/Views/Ferias/ConsultarFerias.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmVyaWFzXENvbnN1bHRhckZlcmlhcy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Junior/Documents/GitHub/WebTeste/WebTeste/Views/Ferias/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmVyaWFzXEluZGV4LmNzaHRtbA==
+[C:/Users/Junior/Documents/GitHub/WebTeste/WebTeste/Views/ConsultFerias/Consulta.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uc3VsdEZlcmlhc1xDb25zdWx0YS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Junior/Documents/GitHub/WebTeste/WebTeste/Views/Home/Index.cshtml]
