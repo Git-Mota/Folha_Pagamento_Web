@@ -3,11 +3,12 @@
 @{
     ViewData["Title"] = "Home Page";
     var nomeCompleto = User.Identity.Name;
+    var DeparTamento = User.FindFirst("Departamento");
 
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bem vindo,@nomeCompleto</h1>
+    <h1 class="display-4">Bem vindo,@nomeCompleto, do @DeparTamento.Value</h1>
     <p>Sistema Integrado de Gestão Pessoal</a>.</p>
 
 </div>
