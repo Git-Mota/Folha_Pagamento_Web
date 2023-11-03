@@ -6,7 +6,7 @@
     var DepartamentoClaim = User.FindFirst("Departamento");
     var Departamento = DepartamentoClaim != null ? DepartamentoClaim.Value : "N/A";
 }
-<script src="~/js/scripPonto.js"></script>
+
 <p id="passanome">@nome</p>
 <p id="passadepartamento">@Departamento</p>
 <style>
@@ -68,8 +68,54 @@
 </table>
 
 <button id="adicionarEntradaButton" class="btn btn-success">Adicionar Entrada</button>
-
-
+<button id="adicionarEntradaButton" class="btn btn-success">Adicionar Inicio almoço</button>
+<button id="adicionarEntradaButton" class="btn btn-success">Adicionar Término almoço</button>
+<button id="adicionarEntradaButton" class="btn btn-success">Adicionar Incio Pausa</button>
+<button id="adicionarEntradaButton" class="btn btn-success">Adicionar Término Pausa</button>
+<button id="adicionarEntradaButton" class="btn btn-success">Adicionar Saida</button>
 <button id="saveButton" class="btn btn-primary">Salvar Alterações</button>
 
+<script>
+    document.getElementById('adicionarEntradaButton').addEventListener('click', function () {
+        var dataAtual = new Date();
+        var horaEntrada = dataAtual.toLocaleTimeString();
+        var dataFormatada = dataAtual.toLocaleDateString();
+        var diaSemana = dataAtual.toLocaleDateString('pt-BR', { weekday: 'long' });
 
+        var nome = document.getElementById('passanome').textContent;
+        var departamento = document.getElementById('passadepartamento').textContent;
+        // Preencher os campos na última linha da tabela
+        document.getElementById('nomeFunc').textContent = nome;
+        document.getElementById('departamentoFunc').textContent = departamento;
+        document.getElementById('data').textContent = dataFormatada;
+        document.getElementById('diaSemana').textContent = diaSemana;
+        document.getElementById('entrada').textContent = horaEntrada;
+
+    });
+
+    document.getElementById('saveButton').addEventListener('click', function () {
+        var table = document.querySelector("table");
+        var rows = table.querySelectorAll("tbody tr");
+
+        var data = [];
+
+        rows.forEach(function (row) {
+            var cells = row.querySelectorAll("td");
+            var ponto = {
+                Nome: cells[0].textContent,
+                Departamento: cells[1].textContent,
+                Data: cells[2].textContent,
+                DiaSemana: cells[3].textContent,
+                HoraEntrada: cells[4].textContent,
+                HoraInicioAlmoco: cells[5].textContent,
+                HoraRetornoAlmoco: cells[6].textContent,
+                HoraInicioPausa: cells[7].textContent,
+                HoraRetornoPausa: cells[8].textContent,
+                HoraSaida: cells[9].textContent,
+            };
+            data.push(ponto);
+        });
+
+        // Agora você pode enviar 'data' para o servidor para salvar as alterações no banco de dados, por meio de uma solicitação AJAX ou outro método.
+    });
+</script>

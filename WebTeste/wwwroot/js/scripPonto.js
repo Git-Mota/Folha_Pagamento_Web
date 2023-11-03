@@ -8,8 +8,8 @@
         var diaSemana = dataAtual.toLocaleDateString('pt-BR', { weekday: 'long' });
 
         // Preencher os campos na última linha da tabela
-        document.getElementById('nomeFunc').textContent = "Nome";
-        document.getElementById('departamentoFunc').textContent = "Departamento";
+        document.getElementById('nomeFunc').textContent = nome;
+        document.getElementById('departamentoFunc').textContent = passadepartamento;
         document.getElementById('data').textContent = dataFormatada;
         document.getElementById('diaSemana').textContent = diaSemana;
         document.getElementById('entrada').textContent = horaEntrada;
