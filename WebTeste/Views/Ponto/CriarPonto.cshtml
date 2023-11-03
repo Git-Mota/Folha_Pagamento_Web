@@ -2,9 +2,24 @@
 
 @{
     ViewData["Title"] = "Cadastrar Ponto";
+    var nome = User.Identity.Name;
+    var DepartamentoClaim = User.FindFirst("Departamento");
+    var Departamento = DepartamentoClaim != null ? DepartamentoClaim.Value : "N/A";
 }
+<script src="~/js/scripPonto.js"></script>
+<p id="passanome">@nome</p>
+<p id="passadepartamento">@Departamento</p>
+<style>
+  #passanome {
+    display: none;
+  }
+  #passadepartamento{
+    display: none;
+  }
+</style>
 <div class="text-center">
-<h1 class="display-4">Cadastrar Ponto</h1>
+    <h1 class="display-4">Cadastrar Ponto</h1>
+</div>
 
 <table class="table">
     <thead>
@@ -22,69 +37,39 @@
         </tr>
     </thead>
     <tbody>
-            @foreach (var ponto in Model)
-            {
-                <tr>
-                    <td>@ponto.Nome</td>
-                    <td>@ponto.Departamento</td>
-                    <td>@ponto.Data.ToString("dd/MM/yyyy")</td>
-                    <td>@ponto.DiaSemana</td>
-                    <td>@ponto.HoraEntrada</td>
-                    <td>@ponto.HoraInicioAlmoco</td>
-                    <td>@ponto.HoraRetornoAlmoco</td>
-                    <td>@ponto.HoraInicioPausa</td>
-                    <td>@ponto.HoraRetornoPausa</td>
-                    <td>@ponto.HoraSaida</td>
-                </tr>
-            }
-        <tr id="newRow" style="display: none;">
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
-            <td contenteditable="true"></td>
+        @foreach (var ponto in Model)
+        {
+            <tr>
+                <td contenteditable="false">@ponto.Nome</td>
+                <td>@ponto.Departamento</td>
+                <td>@ponto.Data.ToString("dd/MM/yyyy")</td>
+                <td>@ponto.DiaSemana</td>
+                <td>@ponto.HoraEntrada</td>
+                <td>@ponto.HoraInicioAlmoco</td>
+                <td>@ponto.HoraRetornoAlmoco</td>
+                <td>@ponto.HoraInicioPausa</td>
+                <td>@ponto.HoraRetornoPausa</td>
+                <td>@ponto.HoraSaida</td>
+            </tr>
+        }
+        <tr id="newRow">
+            <td id="nomeFunc" contenteditable="false"></td>
+            <td id="departamentoFunc" contenteditable="false"></td>
+            <td id="data" contenteditable="false"></td>
+            <td id="diaSemana" contenteditable="false"></td>
+            <td id="entrada" contenteditable="false"></td>
+            <td contenteditable="false"></td>
+            <td contenteditable="false"></td>
+            <td contenteditable="false"></td>
+            <td contenteditable="false"></td>
+            <td contenteditable="false"></td>
         </tr>
     </tbody>
 </table>
 
-<button id="addButton" class="btn btn-success">Adicionar Ponto</button>
+<button id="adicionarEntradaButton" class="btn btn-success">Adicionar Entrada</button>
+
+
 <button id="saveButton" class="btn btn-primary">Salvar Alterações</button>
 
-<script>
-    document.getElementById('addButton').addEventListener('click', function () {
-        // Exibe a linha com campos editáveis quando o botão "Adicionar Ponto" é clicado.
-        var newRow = document.getElementById('newRow');
-        newRow.style.display = "table-row";
-    });
 
-    document.getElementById('saveButton').addEventListener('click', function () {
-        var table = document.querySelector("table");
-        var rows = table.querySelectorAll("tbody tr");
-
-        var data = [];
-
-        rows.forEach(function (row) {
-            var cells = row.querySelectorAll("td");
-            var ponto = {
-                Nome: cells[0].textContent,
-                Departamento: cells[1].textContent,
-                Data: cells[2].textContent,
-                DiaSemana: cells[3].textContent,
-                HoraEntrada: cells[4].textContent,
-                HoraInicioAlmoco: cells[5].textContent,
-                HoraRetornoAlmoco: cells[6].textContent,
-                HoraInicioPausa: cells[7].textContent,
-                HoraRetornoPausa: cells[8].textContent,
-                HoraSaida: cells[9].textContent,
-            };
-            data.push(ponto);
-        });
-
-        // Agora você pode enviar 'data' para o servidor para salvar as alterações no banco de dados, por meio de uma solicitação AJAX ou outro método.
-    });
-</script>
