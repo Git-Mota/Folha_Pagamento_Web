@@ -2,12 +2,57 @@
 
 @{
     ViewData["Title"] = "Ponto";
+    var nome = User.Identity.Name;
+    var DepartamentoClaim = User.FindFirst("Departamento");
+    var Departamento = DepartamentoClaim != null ? DepartamentoClaim.Value : "N/A";
+    var IdFuncionario = User.FindFirst("Id_Func");
 }
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <p id="passanome">@nome</p>
+    <p id="passadepartamento">@Departamento</p>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <div class="text-center">
     <div class="d-grid gop-2 d-md-flex justify-content-md-start">
         <a class="btn btn-primary" role="button" asp-asp-controller="Ponto" asp-action="CriarPonto">Adicionar Ponto</a>
+        <button id="adicionarPontoBtn" class="btn btn-primary">Adicionar Ponto Teste</button>
+
     </div>
     <br />
+
+<div id="pontoModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="fecharModal">&times;</span>
+        <form asp-controller="Ponto" asp-action="SalvarPonto" method="post">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="Nome" value="@nome" disabled /><br />
+
+            <label for="departamento">Departamento:</label>
+            <input type="text" id="departamento" name="Departamento" value="@Departamento" disabled /><br />
+
+            <label for="IddataForm">Data:</label>
+            <input type="text" id="IddataForm" disabled /><br />
+
+            <label for="IdDiaSemana">Dia da Semana:</label>
+            <input type="text" id="IdDiaSemana" disabled /><br />
+
+            <label for="selecaoTipPonto">Selecione o tipo de Ponto:</label>
+            <select id="selecaoPonto" name="selecaoTipPonto">
+            <option value="Ent">Ponto de Entrada</option>
+            <option value="IniAlmo">Ponto de Inicio Almoço</option>
+            <option value="TermAlmo">Ponto Término Almoço</option>
+            <option value="IniPausa">Ponto Inicio Pausa</option>
+            </select>
+
+            <label for="horaAtual">Hora Atual:</label>
+            <input type="text" id="horaAtual" disabled/><br />
+
+            <button id="salvarPontoBtn" class="btn btn-primary">Salvar Ponto</button>
+        </form>
+    </div>
+</div>
 
 
 </div>
@@ -50,3 +95,38 @@
 
   </tbody>
 </table>
+<script>
+    $(document).ready(function() {
+        $("#adicionarPontoBtn").click(function() {
+            // Obter a hora atual
+            var dataAtual = new Date();
+            var horaAtual = dataAtual.toLocaleTimeString();
+            var dataFormatada = dataAtual.toLocaleDateString();
+            var diaSemana = dataAtual.toLocaleDateString('pt-BR', { weekday: 'long' });
+            var recNome = document.getElementById('passanome').textContent;
+            var departamento = document.getElementById('passadepartamento').textContent;
+
+            $("#IddataForm").val(dataFormatada);
+            $("#IdDiaSemana").val(diaSemana);
+            $("#horaAtual").val(horaAtual);
+
+            // Mostrar o modal
+            $("#pontoModal").show();
+        });
+
+        // Fechar o modal quando o botão de fechamento é clicado
+        $("#fecharModal").click(function() {
+        $("#pontoModal").hide();
+        });
+    });
+</script>
+
+<script>
+        $(document).ready(function() {
+        $("#salvarPontoBtn").click(function() {
+            // Envie os dados do formulário para a ação "SalvarPonto"
+            $("form").submit();
+        });
+    });
+</script>
+

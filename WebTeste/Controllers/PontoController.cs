@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using WebTeste.Data;
+using WebTeste.Models;
 
 namespace WebTeste.Controllers
 {
@@ -40,6 +41,44 @@ namespace WebTeste.Controllers
                  "Tab_Ponto.db_HoraRetornoPausa AS 'HoraRetornoPausa'" +
                  "FROM Tab_Funcionario LEFT JOIN Tab_Ponto ON Tab_Funcionario.Id = Tab_Ponto.db_IdFuncionario WHERE Tab_Funcionario.Id =" + convert).ToList();
             return View(pontoSQL);
+
         }
+        [HttpPost]
+        public IActionResult SalvarAlteracoes(List<PontoModel> pontos)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var ponto in pontos)
+                {
+                    _bancoContext.Tab_Ponto.Add(ponto);
+                }
+
+                _bancoContext.SaveChanges(); // Isso irá salvar os dados no banco de dados
+            }
+
+            return RedirectToAction("Index"); // Redirecionar para a página principal após a inserção
+        }
+        [HttpPost]
+        public IActionResult SalvarPonto (PontoModel passaPonto)
+        {
+           
+                var novoPonto = new PontoModel
+                {
+                    Nome = passaPonto.Nome,
+                    Departamento = passaPonto.Departamento,
+                    Data = passaPonto.Data,
+                    DiaSemana = passaPonto.DiaSemana
+                    
+                };
+
+                _bancoContext.Tab_Ponto.Add(novoPonto);
+                _bancoContext.SaveChanges();
+                return RedirectToAction("Index");
+
+          
+
+        }
+
     }
 }
+

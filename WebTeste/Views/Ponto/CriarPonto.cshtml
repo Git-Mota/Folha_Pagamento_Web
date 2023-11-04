@@ -67,6 +67,36 @@
     </tbody>
 </table>
 
+<button id="adicionarEntradaTesteButton" class="btn btn-success">Teste</button>
+
+<!-- Modal para adicionar entrada -->
+<div class="modal fade" id="entradaModal" tabindex="-1" role="dialog" aria-labelledby="entradaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="entradaModalLabel">Adicionar Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulário para adicionar entrada -->
+                <form id="entradaForm">
+                    <div class="form-group">
+                        <label for="horaEntrada">Hora de Entrada:</label>
+                        <input type="text" class="form-control" id="horaEntrada" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-success" id="salvarEntradaButton">Salvar Entrada</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <button id="adicionarEntradaButton" class="btn btn-success">Adicionar Entrada</button>
 <button id="adicionarEntradaButton" class="btn btn-success">Adicionar Inicio almoço</button>
 <button id="adicionarEntradaButton" class="btn btn-success">Adicionar Término almoço</button>
@@ -115,7 +145,27 @@
             };
             data.push(ponto);
         });
+    });
 
-        // Agora você pode enviar 'data' para o servidor para salvar as alterações no banco de dados, por meio de uma solicitação AJAX ou outro método.
+        // Quando o botão "Adicionar Entrada" é clicado, exiba o modal
+    $("#adicionarEntradaTesteButton").click(function () {
+        $("#entradaModal").modal("show");
+    });
+
+    // Quando o botão "Salvar Entrada" no modal é clicado
+    $("#salvarEntradaButton").click(function () {
+        // Obtenha o valor do campo de entrada
+        var horaEntrada = $("#horaEntrada").val();
+
+        // Faça o que desejar com o valor (por exemplo, adicione-o a uma tabela)
+        // Aqui você pode adicionar o valor a uma nova linha na tabela
+        var newRow = $("#newRow");
+        newRow.find("#entrada").text(horaEntrada);
+
+        // Feche o modal
+        $("#entradaModal").modal("hide");
+
+        // Limpe o campo do formulário
+        $("#horaEntrada").val("");
     });
 </script>
