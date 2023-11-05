@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Security.Principal;
 using WebTeste.Data;
 using WebTeste.Models;
 
@@ -62,11 +63,15 @@ namespace WebTeste.Controllers
         [HttpPost]
         public IActionResult SalvarPonto (PontoModel passaPonto)
         {
-            int id = passaPonto.db_IdFuncionario;
-            /*
+            var identity = User.Identity as ClaimsIdentity;
+            var idFunClaim = identity.FindFirst("Id_Func");
+            int convert = int.Parse(idFunClaim.Value);
+            int id = convert;
+           
+               
                 var novoPonto = new PontoModel
                 {
-                    db_IdFuncionario = passaPonto.db_IdFuncionario,
+                    db_IdFuncionario = id,
                     db_Data = passaPonto.db_Data,
                     db_DiaSemana= passaPonto.db_DiaSemana
                     
@@ -74,7 +79,7 @@ namespace WebTeste.Controllers
 
                 _bancoContext.Tab_Ponto.Add(novoPonto);
                 _bancoContext.SaveChanges();
-             */
+             
             return RedirectToAction("Index");
 
          

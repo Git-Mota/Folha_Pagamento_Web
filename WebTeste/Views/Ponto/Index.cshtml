@@ -26,9 +26,9 @@
     <div class="modal-content">
         <span class="close" id="fecharModal">&times;</span>
         <form asp-controller="Ponto" asp-action="SalvarPonto" method="post">
-            <input type="hidden" id="Id" name="db_IdFuncionario" value="@IdFuncionario" />
+           
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="Nome" value="@nome"  /><br />
+            <input type="text" id="nome" name="Nome" value="@nome" disabled /><br />
 
             <label for="departamento">Departamento:</label>
             <input type="text" id="departamento" name="Departamento" value="@Departamento" disabled /><br />
@@ -40,7 +40,7 @@
             <input type="text" id="IdDiaSemana" name="db_DiaSemana" disabled /><br />
 
             <label for="selecaoTipPonto">Selecione o tipo de Ponto:</label>
-            <select id="selecaoPonto" name="selecaoTipPonto">
+            <select id="selecaoPonto" name="tipoPonto">
             <option value="Ent">Ponto de Entrada</option>
             <option value="IniAlmo">Ponto de Inicio Almoço</option>
             <option value="TermAlmo">Ponto Término Almoço</option>
@@ -97,19 +97,25 @@
   </tbody>
 </table>
 <script>
+
     $(document).ready(function() {
         $("#adicionarPontoBtn").click(function() {
+            
             // Obter a hora atual
             var dataAtual = new Date();
             var horaAtual = dataAtual.toLocaleTimeString();
             var dataFormatada = dataAtual.toLocaleDateString();
             var diaSemana = dataAtual.toLocaleDateString('pt-BR', { weekday: 'long' });
-            var recNome = document.getElementById('passanome').textContent;
-            var departamento = document.getElementById('passadepartamento').textContent;
+     
+            
 
+
+            
             $("#IddataForm").val(dataFormatada);
             $("#IdDiaSemana").val(diaSemana);
             $("#horaAtual").val(horaAtual);
+
+ 
 
             // Mostrar o modal
             $("#pontoModal").show();
@@ -120,11 +126,41 @@
         $("#pontoModal").hide();
         });
     });
+    </script>
+    <div id="mensagemDiv"></div>
+
+    <script>
 
             $(document).ready(function() {
-        $("#salvarPontoBtn").click(function() {
-            // Envie os dados do formulário para a ação "SalvarPonto"
-            $("form").submit();
+            $("#salvarPontoBtn").click(function() {
+            $("#IddataForm").prop("disabled", false);
+            $("#IdDiaSemana").prop("disabled", false);
+/*
+            var tipoPonto =  $("#selecaoPonto").val();
+            var mensagemDiv = $("#mensagemDiv");
+            mensagemDiv.text("Tipo de Ponto Selecionado: " + tipoPonto);
+         */   
+            var dadosPonto = {
+                db_IdFuncionario: idFuncionarioTeste,
+                db_Data: dataFormatada,
+                db_DiaSemana: diaSemana,
+               
+            };
+                $.ajax({
+                url:"/Ponto/SalvarPonto",
+                type: "POST", // Método de solicitação
+                data: dadosPonto, // Dados a serem enviados
+                success: function (response) {
+                // Lida com o sucesso, por exemplo, feche o modal
+                $("#pontoModal").hide();
+                },
+                error: function (error) {
+                // Lida com erros, se houver algum
+                console.error(error);
+                }
+            });
+            return false;
+            
         });
     });
 
