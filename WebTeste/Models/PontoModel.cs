@@ -1,21 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebTeste.Models
 {
     public class PontoModel
     {
         [Key]
-        public int? IdPonto { get; set; }
-        public int? IdFuncionario { get; set; }
-        public string Nome { get; set; }
-        public string Departamento { get; set; }    
-        public DateTime Data { get; set; }
-        public string DiaSemana { get; set; }
-        public TimeSpan HoraSaida { get; set; }
-        public TimeSpan HoraEntrada { get; set; }
-        public TimeSpan HoraInicioAlmoco { get; set; }
-        public TimeSpan HoraRetornoAlmoco { get; set; }
-        public TimeSpan HoraInicioPausa { get; set; }
-        public TimeSpan HoraRetornoPausa { get; set; }
+        public int? db_IdPonto { get; set; }
+        [ForeignKey("Id")]
+        public int db_IdFuncionario { get; set; }  
+        public DateTime db_Data { get; set; }
+        public string db_DiaSemana { get; set; }
+        public TimeSpan db_HoraSaida { get; set; }
+        public TimeSpan db_HoraEntrada { get; set; }
+        public TimeSpan db_HoraInicioAlmoco { get; set; }
+        public TimeSpan db_db_HoraRetornoAlmoco { get; set; }
+        public TimeSpan db_HoraInicioPausa { get; set; }
+        public TimeSpan db_HoraRetornoPausa { get; set; }
     }
 }

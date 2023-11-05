@@ -16,7 +16,7 @@
 
 <div class="text-center">
     <div class="d-grid gop-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-primary" role="button" asp-asp-controller="Ponto" asp-action="CriarPonto">Adicionar Ponto</a>
+        <a class="btn btn-primary" role="button" asp-asp-controller="Ponto" asp-action="">Adicionar Ponto</a>
         <button id="adicionarPontoBtn" class="btn btn-primary">Adicionar Ponto Teste</button>
 
     </div>
@@ -26,17 +26,18 @@
     <div class="modal-content">
         <span class="close" id="fecharModal">&times;</span>
         <form asp-controller="Ponto" asp-action="SalvarPonto" method="post">
+            <input type="hidden" id="Id" name="db_IdFuncionario" value="@IdFuncionario" />
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="Nome" value="@nome" disabled /><br />
+            <input type="text" id="nome" name="Nome" value="@nome"  /><br />
 
             <label for="departamento">Departamento:</label>
             <input type="text" id="departamento" name="Departamento" value="@Departamento" disabled /><br />
 
             <label for="IddataForm">Data:</label>
-            <input type="text" id="IddataForm" disabled /><br />
+            <input type="text" id="IddataForm" name="db_Data" disabled /><br />
 
             <label for="IdDiaSemana">Dia da Semana:</label>
-            <input type="text" id="IdDiaSemana" disabled /><br />
+            <input type="text" id="IdDiaSemana" name="db_DiaSemana" disabled /><br />
 
             <label for="selecaoTipPonto">Selecione o tipo de Ponto:</label>
             <select id="selecaoPonto" name="selecaoTipPonto">
@@ -49,7 +50,7 @@
             <label for="horaAtual">Hora Atual:</label>
             <input type="text" id="horaAtual" disabled/><br />
 
-            <button id="salvarPontoBtn" class="btn btn-primary">Salvar Ponto</button>
+            <button id="salvarPontoBtn" class="btn btn-primary"  type="submit">Salvar Ponto</button>
         </form>
     </div>
 </div>
@@ -79,16 +80,16 @@
             @foreach(var ponto in Model)
             {
              <tr>
-                 <td>@ponto.Nome</td>
-                 <td>@ponto.Departamento</td>
-                 <td>@ponto.Data.ToString("dd/MM/yyyy")</td>
-                 <td>@ponto.DiaSemana</td>
-                 <td>@ponto.HoraEntrada</td>
-                 <td>@ponto.HoraInicioAlmoco</td>
-                 <td>@ponto.HoraRetornoAlmoco</td>
-                 <td>@ponto.HoraInicioPausa</td>
-                 <td>@ponto.HoraRetornoPausa</td>
-                 <td>@ponto.HoraSaida</td>
+                 <td>@nome</td>
+                 <td>@Departamento</td>
+                 <td>@ponto.db_Data.ToString("dd/MM/yyyy")</td>
+                 <td>@ponto.db_DiaSemana</td>
+                 <td>@ponto.db_HoraEntrada</td>
+                 <td>@ponto.db_HoraInicioAlmoco</td>
+                 <td>@ponto.db_db_HoraRetornoAlmoco</td>
+                 <td>@ponto.db_HoraInicioPausa</td>
+                 <td>@ponto.db_HoraRetornoPausa</td>
+                 <td>@ponto.db_HoraSaida</td>
             </tr> 
             }
         }
@@ -119,14 +120,14 @@
         $("#pontoModal").hide();
         });
     });
-</script>
 
-<script>
-        $(document).ready(function() {
+            $(document).ready(function() {
         $("#salvarPontoBtn").click(function() {
             // Envie os dados do formulário para a ação "SalvarPonto"
             $("form").submit();
         });
     });
+
 </script>
+
 
