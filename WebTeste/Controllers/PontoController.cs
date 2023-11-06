@@ -61,14 +61,29 @@ namespace WebTeste.Controllers
         }
 
         [HttpPost]
-        public IActionResult SalvarPonto (PontoModel passaPonto)
+        public IActionResult SalvarPonto (PontoModel passaPonto, string tipoPonto)
         {
             var identity = User.Identity as ClaimsIdentity;
             var idFunClaim = identity.FindFirst("Id_Func");
             int convert = int.Parse(idFunClaim.Value);
             int id = convert;
-           
-               
+
+            var existingPonto = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+            p.db_IdFuncionario == id &&
+            p.db_Data == passaPonto.db_Data &&
+            (tipoPonto == "PontEntrada" && p.db_HoraEntrada != null
+            // Adicione mais casos para outros tipos de ponto, se necessário
+            ));
+
+            if (existingPonto != null)
+            {
+                string teste = "tem";
+            }
+            else
+            {
+                string teste = "não tem";
+            }
+
                 var novoPonto = new PontoModel
                 {
                     db_IdFuncionario = id,

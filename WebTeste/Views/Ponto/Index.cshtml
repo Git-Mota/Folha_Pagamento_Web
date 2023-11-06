@@ -52,13 +52,13 @@
             <label for="horaAtual">Hora Atual:</label>
             <input type="text" id="horaAtual" disabled/><br />
              <input type="hidden" id="HrPontEntrada" name="db_HoraEntrada" value="00" />
-             <input type="hidden" id="HrPontoIniAlmo" name="db_HoraInicioAlmoco"  />
+             <input type="hidden" id="HrPontoIniAlmo" name="db_HoraInicioAlmoco" value="00" />
              <input type="hidden" id="HrIdPontoTermAlmo" name="db_db_HoraRetornoAlmoco"  />
              <input type="hidden" id="HrPontoIniPausa" name="db_HoraInicioPausa" />
              <input type="hidden" id="HrPontoTermPausa" name="db_HoraRetornoPausa"  />
              <input type="hidden" id="HrPontoSaida" name="db_HoraSaida"  />
 
-            <button id="salvarPontoBtn" class="btn btn-primary"  type="submit">Salvar Ponto</button>
+            <button id="salvarPontoBtn" class="btn btn-primary" >Salvar Ponto</button>
         </form>
     </div>
 </div>
@@ -135,11 +135,11 @@
 
             
             $("#HrPontEntrada").val(horaAtual);
-            $("HrPontoIniAlmo").val(horaAtual);
-            $("HrIdPontoTermAlmo").val(horaAtual);
-            $("HrIdPontoTermAlmo").val(horaAtual);
-            $("HrIdPontoTermAlmo").val(horaAtual);
-            $("HrIdPontoTermAlmo").val(horaAtual);
+            $("#HrPontoIniAlmo").val(horaAtual);
+            $("#HrIdPontoTermAlmo").val(horaAtual);
+            $("#HrIdPontoTermAlmo").val(horaAtual);
+            $("#HrIdPontoTermAlmo").val(horaAtual);
+            $("#HrIdPontoTermAlmo").val(horaAtual);
             $("#IddataForm").val(dataFormatada);
             $("#IdDiaSemana").val(diaSemana);
             $("#horaAtual").val(horaAtual);
@@ -166,31 +166,44 @@
 
             var tipoPontos =  $("#selecaoPonto").val();
             var mensagemDiv = $("#mensagemDiv");
+            console.log(tipoPontos);
+           
             
          
             switch(tipoPontos){
                 case "PontEntrada":
-                var dadosPonto = {
+                $("#HrPontoIniAlmo").val(null);
+                    const mensagem1 = 'entrou case Entrada'
+                    console.log(mensagem1)
+                    var dadosPonto = {
                     db_IdFuncionario: idFuncionarioTeste,
                     db_Data: dataFormatada,
                     db_DiaSemana: diaSemana,
                     db_HoraEntrada: horaConvert,
+                    tipoPonto: tipoPontos,
+                     
             };
+  
                  break;
                 case "PontoIniAlmo":
+                $("#HrPontEntrada").val(null);
+                const mensagem2 = 'entrou case Almo'
+                console.log(mensagem2)
                  var dadosPonto = {
                     db_IdFuncionario: idFuncionarioTeste,
                     db_Data: dataFormatada,
                     db_DiaSemana: diaSemana,
                     db_HoraInicioAlmoco: horaConvert,
+                    tipoPonto: tipoPonto,
             };
+                
+
                  break;
                 default:
                   mensagemDiv.text("Dia não identificado");
 
             }
-
-                $.ajax({
+             $.ajax({
                 url:"/Ponto/SalvarPonto",
                 type: "POST", // Método de solicitação
                 data: dadosPonto, // Dados a serem enviados
@@ -204,7 +217,7 @@
                 }
             });
             return false;
-            
+
         });
     });
 

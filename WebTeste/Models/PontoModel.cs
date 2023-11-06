@@ -5,6 +5,7 @@ namespace WebTeste.Models
 {
     public class PontoModel
     {
+       
         [Key]
         public int? db_IdPonto { get; set; }
         public int db_IdFuncionario { get; set; }  
