@@ -164,28 +164,32 @@
             $("#IddataForm").prop("disabled", false);
             $("#IdDiaSemana").prop("disabled", false);
 
-            var tipoPonto =  $("#selecaoPonto").val();
+            var tipoPontos =  $("#selecaoPonto").val();
             var mensagemDiv = $("#mensagemDiv");
             
          
-            switch(tipoPonto){
+            switch(tipoPontos){
                 case "PontEntrada":
-                 mensagemDiv.text("PontEntrada");
+                var dadosPonto = {
+                    db_IdFuncionario: idFuncionarioTeste,
+                    db_Data: dataFormatada,
+                    db_DiaSemana: diaSemana,
+                    db_HoraEntrada: horaConvert,
+            };
                  break;
                 case "PontoIniAlmo":
-                 mensagemDiv.text("PontoIniAlmo");
+                 var dadosPonto = {
+                    db_IdFuncionario: idFuncionarioTeste,
+                    db_Data: dataFormatada,
+                    db_DiaSemana: diaSemana,
+                    db_HoraInicioAlmoco: horaConvert,
+            };
                  break;
                 default:
                   mensagemDiv.text("Dia não identificado");
 
             }
-            var dadosPonto = {
-                db_IdFuncionario: idFuncionarioTeste,
-                db_Data: dataFormatada,
-                db_DiaSemana: diaSemana,
-                db_HoraEntrada: horaConvert,
-               
-            };
+
                 $.ajax({
                 url:"/Ponto/SalvarPonto",
                 type: "POST", // Método de solicitação

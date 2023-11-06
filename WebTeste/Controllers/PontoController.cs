@@ -73,8 +73,9 @@ namespace WebTeste.Controllers
                 {
                     db_IdFuncionario = id,
                     db_Data = passaPonto.db_Data,
-                    db_DiaSemana= passaPonto.db_DiaSemana
-                    
+                    db_DiaSemana= passaPonto.db_DiaSemana,
+                    db_HoraEntrada= passaPonto.db_HoraEntrada,
+                    db_HoraInicioAlmoco= passaPonto.db_HoraInicioAlmoco
                 };
 
                 _bancoContext.Tab_Ponto.Add(novoPonto);
