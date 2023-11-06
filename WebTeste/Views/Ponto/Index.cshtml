@@ -41,14 +41,22 @@
 
             <label for="selecaoTipPonto">Selecione o tipo de Ponto:</label>
             <select id="selecaoPonto" name="tipoPonto">
-            <option value="Ent">Ponto de Entrada</option>
-            <option value="IniAlmo">Ponto de Inicio Almoço</option>
-            <option value="TermAlmo">Ponto Término Almoço</option>
-            <option value="IniPausa">Ponto Inicio Pausa</option>
+            <option value="PontEntrada">Ponto de Entrada</option>
+            <option value="PontoIniAlmo">Ponto de Inicio Almoço</option>
+            <option value="PontoTermAlmo">Ponto Término Almoço</option>
+            <option value="PontoIniPausa">Ponto Inicio Pausa</option>
+            <option value="PontoTermPausa">Ponto Término Pausa</option>
+            <option value="PontoSaida">Ponto Ponto de Saida</option>
             </select>
 
             <label for="horaAtual">Hora Atual:</label>
             <input type="text" id="horaAtual" disabled/><br />
+             <input type="hidden" id="HrPontEntrada" name="db_HoraEntrada" value="00" />
+             <input type="hidden" id="HrPontoIniAlmo" name="db_HoraInicioAlmoco"  />
+             <input type="hidden" id="HrIdPontoTermAlmo" name="db_db_HoraRetornoAlmoco"  />
+             <input type="hidden" id="HrPontoIniPausa" name="db_HoraInicioPausa" />
+             <input type="hidden" id="HrPontoTermPausa" name="db_HoraRetornoPausa"  />
+             <input type="hidden" id="HrPontoSaida" name="db_HoraSaida"  />
 
             <button id="salvarPontoBtn" class="btn btn-primary"  type="submit">Salvar Ponto</button>
         </form>
@@ -98,6 +106,16 @@
 </table>
 <script>
 
+    class TimeSpan {
+    constructor(hours, minutes, seconds) {
+    this.hours = hours || 0;
+    this.minutes = minutes || 0;
+    this.seconds = seconds || 0;
+  }
+
+  // Adicione métodos ou propriedades adicionais conforme necessário
+}
+
     $(document).ready(function() {
         $("#adicionarPontoBtn").click(function() {
             
@@ -106,11 +124,22 @@
             var horaAtual = dataAtual.toLocaleTimeString();
             var dataFormatada = dataAtual.toLocaleDateString();
             var diaSemana = dataAtual.toLocaleDateString('pt-BR', { weekday: 'long' });
-     
+           
             
+            var partesHora = horaAtual.split(":");
+            var horas = parseInt(partesHora[0], 10); // Converte a parte de horas para um número inteiro
+            var minutos = parseInt(partesHora[1], 10); // Converte a parte de minutos para um número inteiro
+            var segundos = parseInt(partesHora[2], 10); // Converte a parte de segundos para um número inteiro
+            var horaConvert = new TimeSpan(horas, minutos, segundos);
 
 
             
+            $("#HrPontEntrada").val(horaAtual);
+            $("HrPontoIniAlmo").val(horaAtual);
+            $("HrIdPontoTermAlmo").val(horaAtual);
+            $("HrIdPontoTermAlmo").val(horaAtual);
+            $("HrIdPontoTermAlmo").val(horaAtual);
+            $("HrIdPontoTermAlmo").val(horaAtual);
             $("#IddataForm").val(dataFormatada);
             $("#IdDiaSemana").val(diaSemana);
             $("#horaAtual").val(horaAtual);
@@ -130,20 +159,31 @@
     <div id="mensagemDiv"></div>
 
     <script>
-
             $(document).ready(function() {
             $("#salvarPontoBtn").click(function() {
             $("#IddataForm").prop("disabled", false);
             $("#IdDiaSemana").prop("disabled", false);
-/*
+
             var tipoPonto =  $("#selecaoPonto").val();
             var mensagemDiv = $("#mensagemDiv");
-            mensagemDiv.text("Tipo de Ponto Selecionado: " + tipoPonto);
-         */   
+            
+         
+            switch(tipoPonto){
+                case "PontEntrada":
+                 mensagemDiv.text("PontEntrada");
+                 break;
+                case "PontoIniAlmo":
+                 mensagemDiv.text("PontoIniAlmo");
+                 break;
+                default:
+                  mensagemDiv.text("Dia não identificado");
+
+            }
             var dadosPonto = {
                 db_IdFuncionario: idFuncionarioTeste,
                 db_Data: dataFormatada,
                 db_DiaSemana: diaSemana,
+                db_HoraEntrada: horaConvert,
                
             };
                 $.ajax({
