@@ -66,3 +66,17 @@ body {
     padding: 10px;
     margin-top: 10px;
 }
+.mensagem-3d {
+    background-color: #ff8000; /* Cor de fundo alaranjada */
+    color: #fff; /* Cor do texto branca */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.3); /* Sombra 3D */
+    text-align: center;
+    font-size: 16px;
+}
+
+    /* Estilize o texto dentro da mensagem, se necessário */
+    .mensagem-3d p {
+        margin: 0; /* Remova a margem padrão para evitar espaçamento indesejado */
+    }

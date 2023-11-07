@@ -6,6 +6,14 @@
     var DepartamentoClaim = User.FindFirst("Departamento");
     var Departamento = DepartamentoClaim != null ? DepartamentoClaim.Value : "N/A";
     var IdFuncionario = User.FindFirst("Id_Func");
+
+   
+    @if (ViewBag.Mensagem != null)
+    {
+        <div class="mensagem-3d">
+        <p> @ViewBag.Mensagem</p>
+        </div>
+    }
 }
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <p id="passanome">@nome</p>

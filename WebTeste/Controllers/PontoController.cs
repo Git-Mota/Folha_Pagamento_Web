@@ -15,8 +15,17 @@ namespace WebTeste.Controllers
             _bancoContext = bancoContext;
         }
 
+ 
+
         public IActionResult Index(int RecId)
         {
+            
+                if (TempData["Mensagem"] != null)
+                {
+                    ViewBag.Mensagem = TempData["Mensagem"];
+                }
+               
+           
             var identity = User.Identity as ClaimsIdentity;
             var idFunClaim = identity.FindFirst("Id_Func");
             int convert = int.Parse(idFunClaim.Value);
@@ -103,7 +112,7 @@ namespace WebTeste.Controllers
                           p.db_Data == passaPonto.db_Data &&
                           (tipoPonto == "PontoIniAlmo" && p.db_HoraInicioAlmoco != null));
 
-                    var existiPontoIniAlmoTeste = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+                    var atualizaPonto = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
                           p.db_IdFuncionario == id &&
                           p.db_Data == passaPonto.db_Data &&
                           p.db_HoraInicioAlmoco == null);
@@ -111,12 +120,15 @@ namespace WebTeste.Controllers
 
                     if (existiPonto != null && existiPontoIniAlmo == null)
                     {
-                        existiPontoIniAlmoTeste.db_HoraInicioAlmoco = passaPonto.db_HoraInicioAlmoco;
+                        atualizaPonto.db_HoraInicioAlmoco = passaPonto.db_HoraInicioAlmoco;
                         _bancoContext.SaveChanges();
                     }
                     else
                     {
-                        //passar mensagem que o ponto de entrada não foi registrado
+                        TempData["Mensagem"] = "Não existe nenhuma entrada para o inicio do expediente.";
+                        ViewBag.Mensagem = TempData["Mensagem"];
+                        return RedirectToAction("Index");
+                        
                     }
 
                     break;
