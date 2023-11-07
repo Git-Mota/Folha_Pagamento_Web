@@ -68,33 +68,65 @@ namespace WebTeste.Controllers
             int convert = int.Parse(idFunClaim.Value);
             int id = convert;
 
-            var existingPonto = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
-            p.db_IdFuncionario == id &&
-            p.db_Data == passaPonto.db_Data &&
-            (tipoPonto == "PontEntrada" && p.db_HoraEntrada != null
-            // Adicione mais casos para outros tipos de ponto, se necessário
-            ));
+            var existiPonto = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+                p.db_IdFuncionario == id &&
+                p.db_Data == passaPonto.db_Data &&
+                (p.db_HoraEntrada != null
+                ));
 
-            if (existingPonto != null)
+            switch (tipoPonto)
             {
-                string teste = "tem";
-            }
-            else
-            {
-                string teste = "não tem";
+                case "PontEntrada":
+  
+                    if (existiPonto != null)
+                    {
+                       //PASSAR MENGAEM QUE PONTO JÁ EXISTE.
+                    }
+                    else
+                    {
+                        var novoPonto = new PontoModel
+                        {
+                            db_IdFuncionario = id,
+                            db_Data = passaPonto.db_Data,
+                            db_DiaSemana = passaPonto.db_DiaSemana,
+                            db_HoraEntrada = passaPonto.db_HoraEntrada,
+                        };
+
+                        _bancoContext.Tab_Ponto.Add(novoPonto);
+                        _bancoContext.SaveChanges();
+                    }
+                    break;
+                case "PontoIniAlmo":
+
+                    var existiPontoIniAlmo = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+                          p.db_IdFuncionario == id &&
+                          p.db_Data == passaPonto.db_Data &&
+                          (tipoPonto == "PontoIniAlmo" && p.db_HoraInicioAlmoco != null));
+
+                    var existiPontoIniAlmoTeste = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+                          p.db_IdFuncionario == id &&
+                          p.db_Data == passaPonto.db_Data &&
+                          p.db_HoraInicioAlmoco == null);
+
+
+                    if (existiPonto != null && existiPontoIniAlmo == null)
+                    {
+                        existiPontoIniAlmoTeste.db_HoraInicioAlmoco = passaPonto.db_HoraInicioAlmoco;
+                        _bancoContext.SaveChanges();
+                    }
+                    else
+                    {
+                        //passar mensagem que o ponto de entrada não foi registrado
+                    }
+
+                    break;
+                default:
+                    break;
             }
 
-                var novoPonto = new PontoModel
-                {
-                    db_IdFuncionario = id,
-                    db_Data = passaPonto.db_Data,
-                    db_DiaSemana= passaPonto.db_DiaSemana,
-                    db_HoraEntrada= passaPonto.db_HoraEntrada,
-                    db_HoraInicioAlmoco= passaPonto.db_HoraInicioAlmoco
-                };
 
-                _bancoContext.Tab_Ponto.Add(novoPonto);
-                _bancoContext.SaveChanges();
+
+
              
             return RedirectToAction("Index");
 

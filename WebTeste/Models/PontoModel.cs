@@ -8,6 +8,7 @@ namespace WebTeste.Models
        
         [Key]
         public int? db_IdPonto { get; set; }
+        [ForeignKey("Id")]
         public int db_IdFuncionario { get; set; }  
         public DateTime db_Data { get; set; }
         public string? db_DiaSemana { get; set; }
