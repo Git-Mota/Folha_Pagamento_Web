@@ -7,13 +7,6 @@
     var Departamento = DepartamentoClaim != null ? DepartamentoClaim.Value : "N/A";
     var IdFuncionario = User.FindFirst("Id_Func");
 
-   
-    @if (ViewBag.Mensagem != null)
-    {
-        <div class="mensagem-3d">
-        <p> @ViewBag.Mensagem</p>
-        </div>
-    }
 }
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <p id="passanome">@nome</p>
@@ -26,9 +19,14 @@
     <div class="d-grid gop-2 d-md-flex justify-content-md-start">
         <a class="btn btn-primary" role="button" asp-asp-controller="Ponto" asp-action="">Adicionar Ponto</a>
         <button id="adicionarPontoBtn" class="btn btn-primary">Adicionar Ponto Teste</button>
-
     </div>
     <br />
+    @if (ViewBag.Mensagem != null)
+    {
+            <div class="mensagem-3d">
+            <p> @ViewBag.Mensagem</p>
+            </div>
+    }
 
 <div id="pontoModal" class="modal">
     <div class="modal-content">
@@ -145,9 +143,9 @@
             $("#HrPontEntrada").val(horaAtual);
             $("#HrPontoIniAlmo").val(horaAtual);
             $("#HrIdPontoTermAlmo").val(horaAtual);
-            $("#HrIdPontoTermAlmo").val(horaAtual);
-            $("#HrIdPontoTermAlmo").val(horaAtual);
-            $("#HrIdPontoTermAlmo").val(horaAtual);
+            $("#HrPontoIniPausa").val(horaAtual);
+            $("#HrPontoTermPausa").val(horaAtual);
+            $("#HrPontoSaida").val(horaAtual);
             $("#IddataForm").val(dataFormatada);
             $("#IdDiaSemana").val(diaSemana);
             $("#horaAtual").val(horaAtual);
@@ -180,33 +178,86 @@
          
             switch(tipoPontos){
                 case "PontEntrada":
-                $("#HrPontoIniAlmo").val(null);
+
+                    $("#HrPontoIniAlmo").val(null);
                     const mensagem1 = 'entrou case Entrada'
                     console.log(mensagem1)
                     var dadosPonto = {
-                    db_IdFuncionario: idFuncionarioTeste,
-                    db_Data: dataFormatada,
-                    db_DiaSemana: diaSemana,
-                    db_HoraEntrada: horaConvert,
-                    tipoPonto: tipoPontos,
-                     
-            };
-  
+                        db_IdFuncionario: idFuncionarioTeste,
+                        db_Data: dataFormatada,
+                        db_DiaSemana: diaSemana,
+                        db_HoraEntrada: horaConvert,
+                        tipoPonto: tipoPontos,        
+                    };
                  break;
-                case "PontoIniAlmo":
-                $("#HrPontEntrada").val(null);
-                const mensagem2 = 'entrou case Almo'
-                console.log(mensagem2)
-                 var dadosPonto = {
-                    db_IdFuncionario: idFuncionarioTeste,
-                    db_Data: dataFormatada,
-                    db_DiaSemana: diaSemana,
-                    db_HoraInicioAlmoco: horaConvert,
-                    tipoPonto: tipoPonto,
-            };
-                
 
+                case "PontoIniAlmo":
+                    $("#HrPontEntrada").val(null);
+                    const mensagem2 = 'entrou case Almo'
+                    console.log(mensagem2)
+                    var dadosPonto = {
+                        db_IdFuncionario: idFuncionarioTeste,
+                        db_Data: dataFormatada,
+                        db_DiaSemana: diaSemana,
+                        db_HoraInicioAlmoco: horaConvert,
+                        tipoPonto: tipoPonto,
+                };
                  break;
+
+                case "PontoTermAlmo":
+                    $("#HrPontEntrada").val(null);
+                    $("#HrPontoIniAlmo").val(null);
+                    var dadosPonto = {
+                        db_IdFuncionario: idFuncionarioTeste,
+                        db_Data: dataFormatada,
+                        db_DiaSemana: diaSemana,
+                        db_db_HoraRetornoAlmoco: horaConvert,
+                        tipoPonto: tipoPonto,
+                };
+                break;
+
+                case "PontoIniPausa":
+                    $("#HrPontEntrada").val(null);
+                    $("#HrPontoIniAlmo").val(null);
+                    $("#HrIdPontoTermAlmo").val(null);
+                    var dadosPonto = {
+                        db_IdFuncionario: idFuncionarioTeste,
+                        db_Data: dataFormatada,
+                        db_DiaSemana: diaSemana,
+                        db_HoraInicioPausa: horaConvert,
+                        tipoPonto: tipoPonto,
+                };
+                break;
+
+                case "PontoTermPausa":
+                    $("#HrPontEntrada").val(null);
+                    $("#HrPontoIniAlmo").val(null);
+                    $("#HrIdPontoTermAlmo").val(null);
+                    $("#HrPontoIniPausa").val(null);
+                    var dadosPonto = {
+                        db_IdFuncionario: idFuncionarioTeste,
+                        db_Data: dataFormatada,
+                        db_DiaSemana: diaSemana,
+                        db_HoraRetornoPausa: horaConvert,
+                        tipoPonto: tipoPonto,
+                };
+                break;
+
+                case "PontoSaida":
+                    $("#HrPontEntrada").val(null);
+                    $("#HrPontoIniAlmo").val(null);
+                    $("#HrIdPontoTermAlmo").val(null);
+                    $("#HrPontoIniPausa").val(null);
+                    $("#HrPontoTermPausa").val(null);
+                    var dadosPonto = {
+                        db_IdFuncionario: idFuncionarioTeste,
+                        db_Data: dataFormatada,
+                        db_DiaSemana: diaSemana,
+                        db_HoraSaida: horaConvert,
+                        tipoPonto: tipoPonto,
+                };
+                break;
+
                 default:
                   mensagemDiv.text("Dia não identificado");
 

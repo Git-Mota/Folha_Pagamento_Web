@@ -89,7 +89,9 @@ namespace WebTeste.Controllers
   
                     if (existiPonto != null)
                     {
-                       //PASSAR MENGAEM QUE PONTO JÁ EXISTE.
+                        TempData["Mensagem"] = "Ponto de entrada já cadastrado.";
+                        ViewBag.Mensagem = TempData["Mensagem"];
+                        return RedirectToAction("Index");
                     }
                     else
                     {
@@ -105,6 +107,7 @@ namespace WebTeste.Controllers
                         _bancoContext.SaveChanges();
                     }
                     break;
+
                 case "PontoIniAlmo":
 
                     var existiPontoIniAlmo = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
@@ -112,28 +115,169 @@ namespace WebTeste.Controllers
                           p.db_Data == passaPonto.db_Data &&
                           (tipoPonto == "PontoIniAlmo" && p.db_HoraInicioAlmoco != null));
 
-                    var atualizaPonto = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+                    var atualizaPontoIniAlmo = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
                           p.db_IdFuncionario == id &&
                           p.db_Data == passaPonto.db_Data &&
                           p.db_HoraInicioAlmoco == null);
 
-
                     if (existiPonto != null && existiPontoIniAlmo == null)
                     {
-                        atualizaPonto.db_HoraInicioAlmoco = passaPonto.db_HoraInicioAlmoco;
+                        atualizaPontoIniAlmo.db_HoraInicioAlmoco = passaPonto.db_HoraInicioAlmoco;
                         _bancoContext.SaveChanges();
                     }
                     else
                     {
-                        TempData["Mensagem"] = "Não existe nenhuma entrada para o inicio do expediente.";
-                        ViewBag.Mensagem = TempData["Mensagem"];
-                        return RedirectToAction("Index");
-                        
+                        if (existiPonto == null)
+                        {
+                            TempData["Mensagem"] = "Não existe nenhuma entrada para o inicio do expediente.";
+                            ViewBag.Mensagem = TempData["Mensagem"];
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            TempData["Mensagem"] = "Ponto para inicio do almoço já cadastrado.";
+                            ViewBag.Mensagem = TempData["Mensagem"];
+                            return RedirectToAction("Index");
+                        }   
                     }
+                    break;
 
+                case "PontoTermAlmo":
+
+                    var existiTermIniAlmo = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+                          p.db_IdFuncionario == id &&
+                          p.db_Data == passaPonto.db_Data &&
+                          (tipoPonto == "PontoTermAlmo" && p.db_db_HoraRetornoAlmoco != null));
+
+                    var atualizaPontoTermAlmo = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+                          p.db_IdFuncionario == id &&
+                          p.db_Data == passaPonto.db_Data &&
+                          p.db_db_HoraRetornoAlmoco == null);
+
+                    if (existiPonto != null && existiTermIniAlmo == null)
+                    {
+                        atualizaPontoTermAlmo.db_db_HoraRetornoAlmoco = passaPonto.db_db_HoraRetornoAlmoco;
+                        _bancoContext.SaveChanges();
+                    }
+                    else
+                    {
+                        if (existiPonto == null)
+                        {
+                            TempData["Mensagem"] = "Não existe nenhuma entrada para o inicio do expediente.";
+                            ViewBag.Mensagem = TempData["Mensagem"];
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            TempData["Mensagem"] = "Ponto para retorno do almoço já cadastrado.";
+                            ViewBag.Mensagem = TempData["Mensagem"];
+                            return RedirectToAction("Index");
+                        }
+                    }
                     break;
-                default:
+
+                case "PontoIniPausa":
+
+                    var existiIniPausa= _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+                          p.db_IdFuncionario == id &&
+                          p.db_Data == passaPonto.db_Data &&
+                          (tipoPonto == "PontoIniPausa" && p.db_HoraInicioPausa != null));
+
+                    var atualizaPontoIniPausa = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+                          p.db_IdFuncionario == id &&
+                          p.db_Data == passaPonto.db_Data &&
+                          p.db_HoraInicioPausa == null);
+
+                    if (existiPonto != null && existiIniPausa == null)
+                    {
+                        atualizaPontoIniPausa.db_HoraInicioPausa = passaPonto.db_HoraInicioPausa;
+                        _bancoContext.SaveChanges();
+                    }
+                    else
+                    {
+                        if (existiPonto == null)
+                        {
+                            TempData["Mensagem"] = "Não existe nenhuma entrada para o inicio do expediente.";
+                            ViewBag.Mensagem = TempData["Mensagem"];
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            TempData["Mensagem"] = "Ponto para inicio da pausa já cadastrado.";
+                            ViewBag.Mensagem = TempData["Mensagem"];
+                            return RedirectToAction("Index");
+                        }
+                    }
                     break;
+
+                case "PontoTermPausa":
+
+                    var existiTermPausa = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+                          p.db_IdFuncionario == id &&
+                          p.db_Data == passaPonto.db_Data &&
+                          (tipoPonto == "PontoTermPausa" && p.db_HoraRetornoPausa != null));
+
+                    var atualizaPontoTermPausa = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+                          p.db_IdFuncionario == id &&
+                          p.db_Data == passaPonto.db_Data &&
+                          p.db_HoraRetornoPausa == null);
+
+                    if (existiPonto != null && existiTermPausa == null)
+                    {
+                        atualizaPontoTermPausa.db_HoraRetornoPausa = passaPonto.db_HoraRetornoPausa;
+                        _bancoContext.SaveChanges();
+                    }
+                    else
+                    {
+                        if (existiPonto == null)
+                        {
+                            TempData["Mensagem"] = "Não existe nenhuma entrada para o inicio do expediente.";
+                            ViewBag.Mensagem = TempData["Mensagem"];
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            TempData["Mensagem"] = "Ponto para retorno da pausa já cadastrado.";
+                            ViewBag.Mensagem = TempData["Mensagem"];
+                            return RedirectToAction("Index");
+                        }
+                    }
+                    break;
+
+                case "PontoSaida":
+
+                    var existiPontoSaida = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+                          p.db_IdFuncionario == id &&
+                          p.db_Data == passaPonto.db_Data &&
+                          (tipoPonto == "PontoSaida" && p.db_HoraSaida != null));
+
+                    var atualizaPontoSaida = _bancoContext.Tab_Ponto.FirstOrDefault(p =>
+                          p.db_IdFuncionario == id &&
+                          p.db_Data == passaPonto.db_Data &&
+                          p.db_HoraSaida == null);
+
+                    if (existiPonto != null && existiPontoSaida == null)
+                    {
+                        atualizaPontoSaida.db_HoraSaida = passaPonto.db_HoraSaida;
+                        _bancoContext.SaveChanges();
+                    }
+                    else
+                    {
+                        if (existiPonto == null)
+                        {
+                            TempData["Mensagem"] = "Não existe nenhuma entrada para o inicio do expediente.";
+                            ViewBag.Mensagem = TempData["Mensagem"];
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            TempData["Mensagem"] = "Ponto para saída já cadastrado.";
+                            ViewBag.Mensagem = TempData["Mensagem"];
+                            return RedirectToAction("Index");
+                        }
+                    }
+                    break;
+
             }
 
 
