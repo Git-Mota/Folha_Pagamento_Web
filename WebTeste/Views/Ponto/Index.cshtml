@@ -82,7 +82,7 @@
           <input type="text" id="horaAtual" disabled /><br />
           <input type="hidden" id="HrPontEntrada" name="db_HoraEntrada" value="00" />
           <input type="hidden" id="HrPontoIniAlmo" name="db_HoraInicioAlmoco" value="00" />
-          <input type="hidden" id="HrIdPontoTermAlmo" name="db_HoraRetornoAlmoco" />
+          <input type="hidden" id="HrIdPontoTermAlmo" name="db_db_HoraRetornoAlmoco" />
           <input type="hidden" id="HrPontoIniPausa" name="db_HoraInicioPausa" />
           <input type="hidden" id="HrPontoTermPausa" name="db_HoraRetornoPausa" />
           <input type="hidden" id="HrPontoSaida" name="db_HoraSaida" />
@@ -210,7 +210,12 @@
             switch(tipoPontos){
                 case "PontEntrada":
 
-                    $("#HrPontoIniAlmo").val(null);
+                $("#HrPontoIniAlmo").val(null);
+                $("#HrIdPontoTermAlmo").val(null);
+                $("#HrPontoIniPausa").val(null);
+                $("#HrPontoTermPausa").val(null);
+                $("#HrPontoSaida").val(null);
+
                     const mensagem1 = 'entrou case Entrada'
                     console.log(mensagem1)
                     var dadosPonto = {
@@ -223,7 +228,12 @@
                  break;
 
                 case "PontoIniAlmo":
-                    $("#HrPontEntrada").val(null);
+                $("#HrPontEntrada").val(null);  
+                $("#HrIdPontoTermAlmo").val(null);
+                $("#HrPontoIniPausa").val(null);
+                $("#HrPontoTermPausa").val(null);
+                $("#HrPontoSaida").val(null);
+
                     const mensagem2 = 'entrou case Almo'
                     console.log(mensagem2)
                     var dadosPonto = {
@@ -236,8 +246,13 @@
                  break;
 
                 case "PontoTermAlmo":
-                    $("#HrPontEntrada").val(null);
-                    $("#HrPontoIniAlmo").val(null);
+
+                $("#HrPontEntrada").val(null);  
+                $("#HrPontoIniAlmo").val(null);
+                $("#HrPontoIniPausa").val(null);
+                $("#HrPontoTermPausa").val(null);
+                $("#HrPontoSaida").val(null);
+
                     var dadosPonto = {
                         db_IdFuncionario: idFuncionarioTeste,
                         db_Data: dataFormatada,
@@ -248,9 +263,13 @@
                 break;
 
                 case "PontoIniPausa":
-                    $("#HrPontEntrada").val(null);
-                    $("#HrPontoIniAlmo").val(null);
-                    $("#HrIdPontoTermAlmo").val(null);
+
+                $("#HrPontEntrada").val(null);  
+                $("#HrPontoIniAlmo").val(null);
+                $("#HrIdPontoTermAlmo").val(null);
+                $("#HrPontoTermPausa").val(null);
+                $("#HrPontoSaida").val(null);
+
                     var dadosPonto = {
                         db_IdFuncionario: idFuncionarioTeste,
                         db_Data: dataFormatada,
@@ -261,10 +280,14 @@
                 break;
 
                 case "PontoTermPausa":
-                    $("#HrPontEntrada").val(null);
-                    $("#HrPontoIniAlmo").val(null);
-                    $("#HrIdPontoTermAlmo").val(null);
-                    $("#HrPontoIniPausa").val(null);
+
+
+                $("#HrPontEntrada").val(null);  
+                $("#HrPontoIniAlmo").val(null);
+                $("#HrIdPontoTermAlmo").val(null);
+                $("#HrPontoIniPausa").val(null);
+                $("#HrPontoSaida").val(null);
+
                     var dadosPonto = {
                         db_IdFuncionario: idFuncionarioTeste,
                         db_Data: dataFormatada,
@@ -275,11 +298,14 @@
                 break;
 
                 case "PontoSaida":
-                    $("#HrPontEntrada").val(null);
-                    $("#HrPontoIniAlmo").val(null);
-                    $("#HrIdPontoTermAlmo").val(null);
-                    $("#HrPontoIniPausa").val(null);
-                    $("#HrPontoTermPausa").val(null);
+   
+                $("#HrPontEntrada").val(null);  
+                $("#HrPontoIniAlmo").val(null);
+                $("#HrIdPontoTermAlmo").val(null);
+                $("#HrPontoIniPausa").val(null);
+                $("#HrPontoTermPausa").val(null);
+
+
                     var dadosPonto = {
                         db_IdFuncionario: idFuncionarioTeste,
                         db_Data: dataFormatada,
