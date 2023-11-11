@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using WebTeste.Data;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Options;
 
 internal class Program
 {
@@ -15,6 +17,14 @@ internal class Program
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
 
+        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/Home/Index";
+                options.AccessDeniedPath = "/TelaLogin/login";
+            });
+        builder.Services.AddControllersWithViews();
+
 
 
         var app = builder.Build();
@@ -27,6 +37,8 @@ internal class Program
             app.UseHsts();
         }
 
+        app.UseAuthentication();
+        app.UseAuthorization();
         app.UseHttpsRedirection();
         app.UseStaticFiles();
 

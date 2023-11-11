@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ConsultFeriasModel>
+
+@{
+    ViewData["Title"] = "Consultar Férias";
+}
+<div class="text-center">
+
+<h1 class="display-4">Consultar Férias</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">CPF</th>
+      <th scope="col">Departamento</th>
+      <th scope="col">Data de Inicio</th>
+      <th scope="col">Data Final</th>
+      <th scope="col">Quantidades de dias</th>
+      <th scope="col">Período aquisitivo</th>
+    </tr>
+  </thead>
+  <tbody>
+        @if (Model != null)
+        {
+
+            @foreach (var ferias in Model)
+            {
+             <tr>
+
+                <td>@ferias.Nome</td>
+                <td>@ferias.CPF</td>
+                <td>@ferias.Departamento</td>
+                <td>@ferias.DataInicioFerias.ToString("dd/MM/yyyy")</td>
+                <td>@ferias.DataTerminoFerias.ToString("dd/MM/yyyy")</td>
+                <td>@ferias.QuantDias</td>
+                <td>@ferias.AnoAquisitivo</td>
+
+
+            </tr>
+            }
+        }
+
+  </tbody>
+</table>

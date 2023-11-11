@@ -1,43 +1,338 @@
-﻿
+﻿@model IEnumerable<PontoModel>
 
 @{
     ViewData["Title"] = "Ponto";
+    var nome = User.Identity.Name;
+    var DepartamentoClaim = User.FindFirst("Departamento");
+    var Departamento = DepartamentoClaim != null ? DepartamentoClaim.Value : "N/A";
+    var IdFuncionario = User.FindFirst("Id_Func");
+
 }
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <p id="passanome">@nome</p>
+    <p id="passadepartamento">@Departamento</p>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 <div class="text-center">
     <div class="d-grid gop-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-primary" role="button" asp-asp-controller="Ponto" asp-action="CriarPonto">Adicionar Ponto</a>
+        <button id="adicionarPontoBtn" class="btn btn-primary">Adicionar Ponto Teste</button>
     </div>
     <br />
+    @if (ViewBag.Mensagem != null)
+    {
+            <div class="mensagem-3d">
+            <p> @ViewBag.Mensagem</p>
+            </div>
+    }
 
 
+<div class="modal fade" id="pontoModal" tabindex="-1" aria-labelledby="pontoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <div classe="texto-centro">
+        <h1 class="modal-title fs-5" id="pontoModalLabel">Cadastrar Ponto</h1>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <form asp-controller="Ponto" asp-action="SalvarPonto" method="post">
+         
+          <div class="texto-esquerda">
+          <label for="nome" class="texto-esquerda" >Nome:</label>
+          </div>
+          <input type="text" id="nome" class="form-control" name="Nome" value="@nome" disabled /><br />
+         
+
+          <div  class="texto-esquerda"
+          <label for="departamento">Departamento:</label>
+          <input type="text" id="departamento" class="form-control" name="Departamento" value="@Departamento" disabled /><br />
+          </div>
+
+           <div  class="texto-esquerda">
+          <label for="IddataForm">Data:</label>
+          <input type="text" id="IddataForm" class="form-control" name="db_Data" disabled /><br />
+          </div>
+
+           <div  class="texto-esquerda">
+          <label for="IdDiaSemana">Dia da Semana:</label>
+          <input type="text" id="IdDiaSemana" class="form-control" name="db_DiaSemana" disabled /><br />
+          </div>
+
+           <div  class="texto-esquerda">
+          <label for="selecaoTipPonto">Selecione o tipo de Ponto:</label>
+          <select id="selecaoPonto" class="form-control" name="tipoPonto">
+            <option value="PontEntrada">Ponto de Entrada</option>
+            <option value="PontoIniAlmo">Ponto de Inicio Almoço</option>
+            <option value="PontoTermAlmo">Ponto Término Almoço</option>
+            <option value="PontoIniPausa">Ponto Inicio Pausa</option>
+            <option value="PontoTermPausa">Ponto Término Pausa</option>
+            <option value="PontoSaida">Ponto de Saida</option>
+          </select>
+          </div>
+          <br />
+          <div class="texto-centro">
+          <label for="horaAtual">Hora Atual:</label>
+          </div>
+          <br />
+          <input type="text" id="horaAtual" disabled /><br />
+          <input type="hidden" id="HrPontEntrada" name="db_HoraEntrada" value="00" />
+          <input type="hidden" id="HrPontoIniAlmo" name="db_HoraInicioAlmoco" value="00" />
+          <input type="hidden" id="HrIdPontoTermAlmo" name="db_db_HoraRetornoAlmoco" />
+          <input type="hidden" id="HrPontoIniPausa" name="db_HoraInicioPausa" />
+          <input type="hidden" id="HrPontoTermPausa" name="db_HoraRetornoPausa" />
+          <input type="hidden" id="HrPontoSaida" name="db_HoraSaida" />
+          <br />
+          <button id="salvarPontoBtn" class="btn btn-primary">Salvar Ponto</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
+
+
 <h1 class="display-4">Listagem de Pontos</h1>
 
-<table class="table">
+<table class="table table-striped">
+    
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Nome</th>
-      <th scope="col">CPF</th>
+      <th scope="col">Departamento</th>
       <th scope="col">Data</th>
-      <th scope="col">Localidade</th>
-      <th scope="col">Inico Almoço</th>
-      <th scope="col">Termino Almoço</th>
+      <th scope="col">Dia da Semana</th>
       <th scope="col">Entrada</th>
-      <th scope="col">Saida</th>
+      <th scope="col">Iníco Almoço</th>
+      <th scope="col">Término Almoço</th>
+      <th scope="col">Início Pausa</th>
+      <th scope="col">Término Pausa</th>
+      <th scope="col">Saída</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>44963754860</td>
-      <td>20/10/2023</td>
-      <td>HomeOffice</td>
-      <td>12:00:23</td>
-      <td>13:00:34</td>
-      <td>08:03:13</td>
-      <td>16:00:48</td>
-    </tr>
+        @if (Model != null)
+        {   
+            @foreach(var ponto in Model)
+            {
+             <tr>
+                 <td>@nome</td>
+                 <td>@Departamento</td>
+                 <td>@ponto.db_Data.ToString("dd/MM/yyyy")</td>
+                 <td>@ponto.db_DiaSemana</td>
+                 <td>@ponto.db_HoraEntrada</td>
+                 <td>@ponto.db_HoraInicioAlmoco</td>
+                 <td>@ponto.db_db_HoraRetornoAlmoco</td>
+                 <td>@ponto.db_HoraInicioPausa</td>
+                 <td>@ponto.db_HoraRetornoPausa</td>
+                 <td>@ponto.db_HoraSaida</td>
+            </tr> 
+            }
+        }
+
   </tbody>
 </table>
+<script>
+
+    class TimeSpan {
+    constructor(hours, minutes, seconds) {
+    this.hours = hours || 0;
+    this.minutes = minutes || 0;
+    this.seconds = seconds || 0;
+  }
+
+  // Adicione métodos ou propriedades adicionais conforme necessário
+}
+
+    $(document).ready(function() {
+        $("#adicionarPontoBtn").click(function() {
+
+            $("#pontoModal").modal('show');
+        });
+
+               $("#fecharModal").click(function() {
+            $("#pontoModal").modal('hide');
+        });
+    });
+            // Obter a hora atual
+            var dataAtual = new Date();
+            var horaAtual = dataAtual.toLocaleTimeString();
+            var dataFormatada = dataAtual.toLocaleDateString();
+            var diaSemana = dataAtual.toLocaleDateString('pt-BR', { weekday: 'long' });
+           
+            
+            var partesHora = horaAtual.split(":");
+            var horas = parseInt(partesHora[0], 10); // Converte a parte de horas para um número inteiro
+            var minutos = parseInt(partesHora[1], 10); // Converte a parte de minutos para um número inteiro
+            var segundos = parseInt(partesHora[2], 10); // Converte a parte de segundos para um número inteiro
+            var horaConvert = new TimeSpan(horas, minutos, segundos);
+
+
+            
+            $("#HrPontEntrada").val(horaAtual);
+            $("#HrPontoIniAlmo").val(horaAtual);
+            $("#HrIdPontoTermAlmo").val(horaAtual);
+            $("#HrPontoIniPausa").val(horaAtual);
+            $("#HrPontoTermPausa").val(horaAtual);
+            $("#HrPontoSaida").val(horaAtual);
+            $("#IddataForm").val(dataFormatada);
+            $("#IdDiaSemana").val(diaSemana);
+            $("#horaAtual").val(horaAtual);
+
+ 
+
+            // Mostrar o modal
+              
+        
+
+
+        // Fechar o modal quando o botão de fechamento é clicado
+ 
+ 
+
+            $(document).ready(function() {
+            $("#salvarPontoBtn").click(function() {
+            $("#IddataForm").prop("disabled", false);
+            $("#IdDiaSemana").prop("disabled", false);
+
+            var tipoPontos =  $("#selecaoPonto").val();
+            var mensagemDiv = $("#mensagemDiv");
+            console.log(tipoPontos);
+           
+            
+         
+            switch(tipoPontos){
+                case "PontEntrada":
+
+                $("#HrPontoIniAlmo").val(null);
+                $("#HrIdPontoTermAlmo").val(null);
+                $("#HrPontoIniPausa").val(null);
+                $("#HrPontoTermPausa").val(null);
+                $("#HrPontoSaida").val(null);
+
+                    const mensagem1 = 'entrou case Entrada'
+                    console.log(mensagem1)
+                    var dadosPonto = {
+                        db_IdFuncionario: idFuncionarioTeste,
+                        db_Data: dataFormatada,
+                        db_DiaSemana: diaSemana,
+                        db_HoraEntrada: horaConvert,
+                        tipoPonto: tipoPontos,        
+                    };
+                 break;
+
+                case "PontoIniAlmo":
+                $("#HrPontEntrada").val(null);  
+                $("#HrIdPontoTermAlmo").val(null);
+                $("#HrPontoIniPausa").val(null);
+                $("#HrPontoTermPausa").val(null);
+                $("#HrPontoSaida").val(null);
+
+                    const mensagem2 = 'entrou case Almo'
+                    console.log(mensagem2)
+                    var dadosPonto = {
+                        db_IdFuncionario: idFuncionarioTeste,
+                        db_Data: dataFormatada,
+                        db_DiaSemana: diaSemana,
+                        db_HoraInicioAlmoco: horaConvert,
+                        tipoPonto: tipoPonto,
+                };
+                 break;
+
+                case "PontoTermAlmo":
+
+                $("#HrPontEntrada").val(null);  
+                $("#HrPontoIniAlmo").val(null);
+                $("#HrPontoIniPausa").val(null);
+                $("#HrPontoTermPausa").val(null);
+                $("#HrPontoSaida").val(null);
+
+                    var dadosPonto = {
+                        db_IdFuncionario: idFuncionarioTeste,
+                        db_Data: dataFormatada,
+                        db_DiaSemana: diaSemana,
+                        db_db_HoraRetornoAlmoco: horaConvert,
+                        tipoPonto: tipoPonto,
+                };
+                break;
+
+                case "PontoIniPausa":
+
+                $("#HrPontEntrada").val(null);  
+                $("#HrPontoIniAlmo").val(null);
+                $("#HrIdPontoTermAlmo").val(null);
+                $("#HrPontoTermPausa").val(null);
+                $("#HrPontoSaida").val(null);
+
+                    var dadosPonto = {
+                        db_IdFuncionario: idFuncionarioTeste,
+                        db_Data: dataFormatada,
+                        db_DiaSemana: diaSemana,
+                        db_HoraInicioPausa: horaConvert,
+                        tipoPonto: tipoPonto,
+                };
+                break;
+
+                case "PontoTermPausa":
+
+
+                $("#HrPontEntrada").val(null);  
+                $("#HrPontoIniAlmo").val(null);
+                $("#HrIdPontoTermAlmo").val(null);
+                $("#HrPontoIniPausa").val(null);
+                $("#HrPontoSaida").val(null);
+
+                    var dadosPonto = {
+                        db_IdFuncionario: idFuncionarioTeste,
+                        db_Data: dataFormatada,
+                        db_DiaSemana: diaSemana,
+                        db_HoraRetornoPausa: horaConvert,
+                        tipoPonto: tipoPonto,
+                };
+                break;
+
+                case "PontoSaida":
+   
+                $("#HrPontEntrada").val(null);  
+                $("#HrPontoIniAlmo").val(null);
+                $("#HrIdPontoTermAlmo").val(null);
+                $("#HrPontoIniPausa").val(null);
+                $("#HrPontoTermPausa").val(null);
+
+
+                    var dadosPonto = {
+                        db_IdFuncionario: idFuncionarioTeste,
+                        db_Data: dataFormatada,
+                        db_DiaSemana: diaSemana,
+                        db_HoraSaida: horaConvert,
+                        tipoPonto: tipoPonto,
+                };
+                break;
+            }
+             $.ajax({
+                url:"/Ponto/SalvarPonto",
+                type: "POST", // Método de solicitação
+                data: dadosPonto, // Dados a serem enviados
+                success: function (response) {
+                // Lida com o sucesso, por exemplo, feche o modal
+                $("#pontoModal").hide();
+                },
+                error: function (error) {
+                // Lida com erros, se houver algum
+                console.error(error);
+                }
+            });
+            return false;
+
+        });
+    });
+
+</script>
+
+

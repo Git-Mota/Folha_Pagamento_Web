@@ -1,7 +1,171 @@
-﻿@model HomeModel;
+﻿@model IEnumerable<PontoModel>
 
 @{
     ViewData["Title"] = "Cadastrar Ponto";
+    var nome = User.Identity.Name;
+    var DepartamentoClaim = User.FindFirst("Departamento");
+    var Departamento = DepartamentoClaim != null ? DepartamentoClaim.Value : "N/A";
 }
+
+<p id="passanome">@nome</p>
+<p id="passadepartamento">@Departamento</p>
+<style>
+  #passanome {
+    display: none;
+  }
+  #passadepartamento{
+    display: none;
+  }
+</style>
+<div class="text-center">
+    <h1 class="display-4">Cadastrar Ponto</h1>
 </div>
-<h1 class="display-4">Cadastrar Ponto</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Data</th>
+            <th scope="col">Dia da Semana</th>
+            <th scope="col">Entrada</th>
+            <th scope="col">Início Almoço</th>
+            <th scope="col">Término Almoço</th>
+            <th scope="col">Início Pausa</th>
+            <th scope="col">Término Pausa</th>
+            <th scope="col">Saída</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ponto in Model)
+        {
+            <tr>
+                <td contenteditable="false">@nome</td>
+                <td>@Departamento</td>
+                <td>@ponto.db_Data.ToString("dd/MM/yyyy")</td>
+                <td>@ponto.db_DiaSemana</td>
+                <td>@ponto.db_HoraEntrada</td>
+                <td>@ponto.db_HoraInicioAlmoco</td>
+                <td>@ponto.db_db_HoraRetornoAlmoco</td>
+                <td>@ponto.db_HoraInicioPausa</td>
+                <td>@ponto.db_HoraRetornoPausa</td>
+                <td>@ponto.db_HoraSaida</td>
+            </tr>
+        }
+        <tr id="newRow">
+            <td id="nomeFunc" contenteditable="false"></td>
+            <td id="departamentoFunc" contenteditable="false"></td>
+            <td id="data" contenteditable="false"></td>
+            <td id="diaSemana" contenteditable="false"></td>
+            <td id="entrada" contenteditable="false"></td>
+            <td contenteditable="false"></td>
+            <td contenteditable="false"></td>
+            <td contenteditable="false"></td>
+            <td contenteditable="false"></td>
+            <td contenteditable="false"></td>
+        </tr>
+    </tbody>
+</table>
+
+<button id="adicionarEntradaTesteButton" class="btn btn-success">Teste</button>
+
+<!-- Modal para adicionar entrada -->
+<div class="modal fade" id="entradaModal" tabindex="-1" role="dialog" aria-labelledby="entradaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="entradaModalLabel">Adicionar Entrada</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulário para adicionar entrada -->
+                <form id="entradaForm">
+                    <div class="form-group">
+                        <label for="horaEntrada">Hora de Entrada:</label>
+                        <input type="text" class="form-control" id="horaEntrada" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-success" id="salvarEntradaButton">Salvar Entrada</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<button id="adicionarEntradaButton" class="btn btn-success">Adicionar Entrada</button>
+<button id="adicionarEntradaButton" class="btn btn-success">Adicionar Inicio almoço</button>
+<button id="adicionarEntradaButton" class="btn btn-success">Adicionar Término almoço</button>
+<button id="adicionarEntradaButton" class="btn btn-success">Adicionar Incio Pausa</button>
+<button id="adicionarEntradaButton" class="btn btn-success">Adicionar Término Pausa</button>
+<button id="adicionarEntradaButton" class="btn btn-success">Adicionar Saida</button>
+<button id="saveButton" class="btn btn-primary">Salvar Alterações</button>
+
+<script>
+    document.getElementById('adicionarEntradaButton').addEventListener('click', function () {
+        var dataAtual = new Date();
+        var horaEntrada = dataAtual.toLocaleTimeString();
+        var dataFormatada = dataAtual.toLocaleDateString();
+        var diaSemana = dataAtual.toLocaleDateString('pt-BR', { weekday: 'long' });
+
+        var nome = document.getElementById('passanome').textContent;
+        var departamento = document.getElementById('passadepartamento').textContent;
+        // Preencher os campos na última linha da tabela
+        document.getElementById('nomeFunc').textContent = nome;
+        document.getElementById('departamentoFunc').textContent = departamento;
+        document.getElementById('data').textContent = dataFormatada;
+        document.getElementById('diaSemana').textContent = diaSemana;
+        document.getElementById('entrada').textContent = horaEntrada;
+
+    });
+
+    document.getElementById('saveButton').addEventListener('click', function () {
+        var table = document.querySelector("table");
+        var rows = table.querySelectorAll("tbody tr");
+
+        var data = [];
+
+        rows.forEach(function (row) {
+            var cells = row.querySelectorAll("td");
+            var ponto = {
+                Nome: cells[0].textContent,
+                Departamento: cells[1].textContent,
+                Data: cells[2].textContent,
+                DiaSemana: cells[3].textContent,
+                HoraEntrada: cells[4].textContent,
+                HoraInicioAlmoco: cells[5].textContent,
+                HoraRetornoAlmoco: cells[6].textContent,
+                HoraInicioPausa: cells[7].textContent,
+                HoraRetornoPausa: cells[8].textContent,
+                HoraSaida: cells[9].textContent,
+            };
+            data.push(ponto);
+        });
+    });
+
+        // Quando o botão "Adicionar Entrada" é clicado, exiba o modal
+    $("#adicionarEntradaTesteButton").click(function () {
+        $("#entradaModal").modal("show");
+    });
+
+    // Quando o botão "Salvar Entrada" no modal é clicado
+    $("#salvarEntradaButton").click(function () {
+        // Obtenha o valor do campo de entrada
+        var horaEntrada = $("#horaEntrada").val();
+
+        // Faça o que desejar com o valor (por exemplo, adicione-o a uma tabela)
+        // Aqui você pode adicionar o valor a uma nova linha na tabela
+        var newRow = $("#newRow");
+        newRow.find("#entrada").text(horaEntrada);
+
+        // Feche o modal
+        $("#entradaModal").modal("hide");
+
+        // Limpe o campo do formulário
+        $("#horaEntrada").val("");
+    });
+</script>

@@ -14,5 +14,75 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background: linear-gradient(#d1ced1, #daa84b);
+}
+
+.cabecalho-classe {
+    background-color: blue;
+    /* Outras propriedades de estilo, se necessário */
+}
+
+ 
+
+    /* Estilo do botão de fechamento */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    #passanome {
+        display: none;
+    }
+
+    #passadepartamento {
+        display: none;
+    } 
+
+#mensagemDiv {
+    background-color: #F1F1F1;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 10px;
+}
+.mensagem-3d {
+    background-color: #ff8000; /* Cor de fundo alaranjada */
+    color: #fff; /* Cor do texto branca */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.3); /* Sombra 3D */
+    text-align: center;
+    font-size: 16px;
+}
+
+    /* Estilize o texto dentro da mensagem, se necessário */
+.mensagem-3d p {
+        margin: 0; /* Remova a margem padrão para evitar espaçamento indesejado */
+    }
+
+
+.texto-centro {
+    text-align: center;
+    color: white;
+}
+.texto-esquerda {
+    text-align: left;
+    color: white;
+}
+
+.modal-content {
+    position: absolute;
+    width: 400px;
+    padding: 40px;
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+}
+
+.modal-header {
+    color: white; /* Substitua "#FF0000" pela cor desejada */
+    text-align: center;
 }
