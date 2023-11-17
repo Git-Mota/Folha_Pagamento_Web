@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\WebTeste.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\Images\\fachada.jpg",
+      "PackagePath": "staticwebassets\\Images\\fachada.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\Images\\refetorio.jpg",
+      "PackagePath": "staticwebassets\\Images\\refetorio.jpg"
+    },
+    {
       "Id": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

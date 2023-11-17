@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wI6JOhEioU7oY6ofJiZhbeU8SqI7Yt25iWxz3rf7R8Q=",
+  "Hash": "7hvDlyAPpXMSieYcWtwmhOqiWmiIKL88LnKpJhpXWmQ=",
   "Source": "WebTeste",
   "BasePath": "_content/WebTeste",
   "Mode": "Default",
@@ -100,6 +100,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\Images\\fachada.jpg",
+      "SourceId": "WebTeste",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\",
+      "BasePath": "_content/WebTeste",
+      "RelativePath": "Images/fachada.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\fachada.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\Images\\refetorio.jpg",
+      "SourceId": "WebTeste",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\",
+      "BasePath": "_content/WebTeste",
+      "RelativePath": "Images/refetorio.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\refetorio.jpg"
     },
     {
       "Identity": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\js\\site.js",
