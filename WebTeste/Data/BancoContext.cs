@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using WebTeste.Controllers;
 using WebTeste.Models;
 
 namespace WebTeste.Data
@@ -15,6 +16,7 @@ namespace WebTeste.Data
         public DbSet<PontoModel> Tab_Ponto { get; set; }
         public DbSet<UsuarioModel> Tab_Usuario { get; set; }
         public DbSet<FuncionarioModel> Tab_Funcionario { get; set; }
+        public DbSet<ConsultDemonstrativoModel> Tab_Demostrativo { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UsuarioModel>()

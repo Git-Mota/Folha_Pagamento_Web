@@ -10,8 +10,6 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebTeste
 build_property.RootNamespace = WebTeste
 build_property.ProjectDir = C:\Users\Junior\Documents\GitHub\WebTeste\WebTeste\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
@@ -20,6 +18,10 @@ build_property._RazorSourceGeneratorDebug =
 
 [C:/Users/Junior/Documents/GitHub/WebTeste/WebTeste/Views/ConsultFerias/Consulta.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uc3VsdEZlcmlhc1xDb25zdWx0YS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Junior/Documents/GitHub/WebTeste/WebTeste/Views/Demonstrativo/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVtb25zdHJhdGl2b1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Junior/Documents/GitHub/WebTeste/WebTeste/Views/Home/Index.cshtml]

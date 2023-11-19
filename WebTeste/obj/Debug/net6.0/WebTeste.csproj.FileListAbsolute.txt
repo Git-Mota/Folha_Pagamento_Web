@@ -174,4 +174,3 @@ C:\Users\Wemerson Pereira\Documents\GitHub\WebTeste\WebTeste\obj\Debug\net6.0\We
 C:\Users\Wemerson Pereira\Documents\GitHub\WebTeste\WebTeste\obj\Debug\net6.0\ref\WebTeste.dll
 C:\Users\Junior\Documents\GitHub\WebTeste\WebTeste\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutTeste.cshtml.rz.scp.css
 C:\Users\Wemerson Pereira\Documents\GitHub\WebTeste\WebTeste\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutTeste.cshtml.rz.scp.css
-C:\Users\Junior\Documents\GitHub\WebTeste\WebTeste\obj\Debug\net6.0\WebTeste.sourcelink.json

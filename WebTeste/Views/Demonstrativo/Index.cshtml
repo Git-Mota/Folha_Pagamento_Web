@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Demonstrativo";
+    var nome = User.Identity.Name;
+    var DepartamentoClaim = User.FindFirst("Departamento");
+    var Departamento = DepartamentoClaim != null ? DepartamentoClaim.Value : "N/A";
+    var IdFuncionario = User.FindFirst("Id_Func");
+
+    // Obter o mês atual
+    var mesAtual = DateTime.Now.Month;
+
+    // Gerar uma lista de meses anteriores ao atual
+    var mesesAnteriores = Enumerable.Range(1, mesAtual - 1)
+                                     .Select(m => UppercaseFirst(new DateTime(1, m, 1).ToString("MMMM")))
+                                     .ToList();
+
+    // Método para capitalizar a primeira letra de uma string
+    string UppercaseFirst(string s) => char.ToUpper(s[0]) + s.Substring(1);
+}
+
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<p id="passanome">@nome</p>
+<p id="passadepartamento">@Departamento</p>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <div class="text-center">
+        <h1 class="display-4">Demonstrativo Financeiro</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <form>
+                    <label for="selecaoPonto">Selecione o mês desejado:</label>
+                    <select id="selecaoPonto" class="form-control" name="tipoPonto">
+                        @foreach (var mes in mesesAnteriores)
+                        {
+                            <option value="@mes">@mes</option>
+                        }
+                    </select>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF</th>
+                    <th scope="col">Cargo</th>
+                    <th scope="col">Data de Inicio</th>
+                    <th scope="col">Data Final</th>
+                    <th scope="col">INSS</th>
+                    <th scope="col">Imposto de Renda</th>
+                    <th scope="col">Horas Pendentes</th>
+                    <th scope="col">Descontos Totais</th>
+                    <th scope="col">Salário Final</th>
+                </tr>
+            </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+
+                        @foreach (var ferias in Model)
+                        {
+                            <tr>
+
+                            <td>@ferias.Nome</td>
+                            <td>@ferias.CPF</td>
+                            <td>@ferias.Departamento</td>
+                            <td>@ferias.DataInicioFerias.ToString("dd/MM/yyyy")</td>
+                            <td>@ferias.DataTerminoFerias.ToString("dd/MM/yyyy")</td>
+                            <td>@ferias.QuantDias</td>
+                            <td>@ferias.AnoAquisitivo</td>
+
+
+                        </tr>
+                    }
+                }
+
+            </tbody>
+    </table>
