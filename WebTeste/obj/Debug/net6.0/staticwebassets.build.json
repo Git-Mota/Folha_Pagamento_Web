@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "7hvDlyAPpXMSieYcWtwmhOqiWmiIKL88LnKpJhpXWmQ=",
+  "Hash": "XpdNu+Ce4MAks48iuH+RTUYFS/yBAAmOmjr3nxD0Kd8=",
   "Source": "WebTeste",
   "BasePath": "_content/WebTeste",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\WebTeste.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\css\\barra.css",
+      "SourceId": "WebTeste",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\",
+      "BasePath": "_content/WebTeste",
+      "RelativePath": "css/barra.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\barra.css"
     },
     {
       "Identity": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\css\\site.css",

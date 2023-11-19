@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\Images\\refetorio.jpg"
     },
     {
+      "Id": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\css\\barra.css",
+      "PackagePath": "staticwebassets\\css\\barra.css"
+    },
+    {
       "Id": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
