@@ -120,15 +120,69 @@
                 <div class="container border rounded" style="background-color: #ededf2; padding: 10px;">
                     <h6>Detalhes do Demonstrativo</h6>
                     <!-- Adicione mais detalhes conforme necessário -->
-                    <p>Nome:</p>
-                    <p>CPF:</p>
-                    <p>Cargo:</p>
-                    <p>Data de Início: 01/10/2023</p>
-                    <p>Data Final: 30/10/2023</p>
-                    <p>INSS: </p>
-                    <p>Imposto de Renda: </p>
-                    <p>Descontos Totais: </p>
-                    <p>Salário Final: </p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Descrição</th>
+                                <th scope="col">Referência</th>
+                                <th scope="col">Descontos</th>
+                                <th scope="col">Vencimentos</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2">Vale Refeição</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Vale Transporte</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">INSS</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Imposto de Renda</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Valor Hora</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Vale Transporte</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Observações</td>
+                                <td>Total Desc.</td>
+                                <td>Total Venc.</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" rowspan="2"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">Total Líquido: </td>
+                            </tr>
+                            <!-- Adicione mais linhas conforme necessário -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="modal-footer" style="background-color: #f8f9fa; border-top: 1px solid #ddd; border-radius: 0 0 0.25rem 0.25rem;">
@@ -148,7 +202,7 @@
 
 
 
-                <script>
+     <script>
     function abrirModal() {
         $('#detalhesModal').modal('show');
     }

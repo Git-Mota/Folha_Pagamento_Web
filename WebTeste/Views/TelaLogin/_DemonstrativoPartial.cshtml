@@ -1,0 +1,37 @@
+﻿<!-- _DemonstrativoPartial.cshtml -->
+@model IEnumerable<ConsultDemonstrativoModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Data de Inicio</th>
+            <th scope="col">Data Final</th>
+            <th scope="col">INSS</th>
+            <th scope="col">Imposto de Renda</th>
+            <th scope="col">Descontos Totais</th>
+            <th scope="col">Salário Final</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var demostrativo in Model)
+            {
+                <tr>
+                    <td>@demostrativo.nome</td>
+                    <td>@demostrativo.cpf</td>
+                    <td>@demostrativo.cargo</td>
+                    <td>@demostrativo.dataInicio.ToString("dd/MM/yyyy")</td>
+                    <td>@demostrativo.dataFinal.ToString("dd/MM/yyyy")</td>
+                    <td>@demostrativo.inss</td>
+                    <td>@demostrativo.impostoRenda</td>
+                    <td> @(Convert.ToDecimal(demostrativo.inss) + Convert.ToDecimal(demostrativo.impostoRenda))</td>
+                    <td>@demostrativo.salarioFinal</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
