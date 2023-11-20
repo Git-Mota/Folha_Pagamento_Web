@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Images\**" />
+    <Compile Remove="Migrations\**" />
+    <Content Remove="Images\**" />
+    <Content Remove="Migrations\**" />
+    <EmbeddedResource Remove="Images\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <None Remove="Images\**" />
+    <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\Images\Capturar.PNG" />
     <Content Remove="wwwroot\js\scripPonto.js" />
   </ItemGroup>
@@ -28,11 +39,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Images\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

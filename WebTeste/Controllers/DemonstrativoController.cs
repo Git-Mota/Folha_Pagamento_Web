@@ -16,29 +16,21 @@ namespace WebTeste.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+                var identity = User.Identity as ClaimsIdentity;
+                var idFunClaim = identity.FindFirst("Id_Func");
+                int convert = int.Parse(idFunClaim.Value);
+                var demostrativoSQL = _bancoContext.Tab_Demostrativo.FromSqlRaw("SELECT Tab_Demostrativo.IdDemonstrativo AS IdDemons, Tab_Demostrativo.IdFuncionario AS IdFunc, Tab_Funcionario.NomeCompleto AS nome, Tab_Funcionario.CPF AS cpf," +
+                              "Tab_Funcionario.tb_ValValeRefeicao AS valeRefeicao, Tab_Funcionario.tb_ValTransporte AS valeTransporte, Tab_Funcionario.tb_ValHora AS valorHora," +
+                              "Tab_Funcionario.tb_HoraSemanal AS HoraSemanal, Tab_Funcionario.tb_Cargo AS cargo, Tab_Demostrativo.DataFinal AS dataInicio, Tab_Demostrativo.DataFinal AS dataFinal," +
+                              "Tab_Demostrativo.SalarioBase AS salarioBase, Tab_Demostrativo.SalarioFinal as salarioFinal, Tab_Demostrativo.INSS as inss, " +
+                              "Tab_Demostrativo.ImpostoRenda as impostoRenda " +
+                              "FROM Tab_Funcionario LEFT JOIN Tab_Demostrativo ON Tab_Funcionario.Id = Tab_Demostrativo.IdFuncionario WHERE Tab_Funcionario.Id =" + convert).ToList();
+                    return View(demostrativoSQL);
+                
         }
 
         public IActionResult Consulta() {
 
-            var identity = User.Identity as ClaimsIdentity;
-            if (identity != null)
-            {
-                var idFunClaim = identity.FindFirst("Id_Func");
-                int convert = int.Parse(idFunClaim.Value);
-                if (idFunClaim != null)
-                {
-
-                    var feriasSQL = _bancoContext.Tab_Funcionario_Ferias.FromSqlRaw("SELECT Tab_Funcionario.NomeCompleto AS Nome, Tab_Funcionario.CPF AS CPF, " +
-                              "Tab_Funcionario.tb_Departamento AS Departamento, Tab_Funcionario.LocalidadeAtual AS Localidade," +
-                              " Tab_Ferias.Tb_DataInicioFerias AS 'DataInicioFerias', Tab_Ferias.Tb_DataFinalFerias AS 'DataTerminoFerias'," +
-                              "Tab_Ferias.Tb_AnoAquisitivo AS 'AnoAquisitivo', Tab_Ferias.Tb_QuantidadeDiasParcela AS QuantDias" +
-                              " FROM Tab_Funcionario LEFT JOIN Tab_Ferias ON Tab_Funcionario.Id = Tab_Ferias.Tb_IdFuncionario WHERE Tab_Funcionario.Id =" + convert).ToList();
-                    return View(feriasSQL);
-
-
-                }
-            }
             return View();
 
         }

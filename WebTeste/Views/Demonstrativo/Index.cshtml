@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<ConsultDemonstrativoModel>
+@{
     ViewData["Title"] = "Demonstrativo";
     var nome = User.Identity.Name;
     var DepartamentoClaim = User.FindFirst("Departamento");
@@ -55,7 +56,6 @@
                     <th scope="col">Data Final</th>
                     <th scope="col">INSS</th>
                     <th scope="col">Imposto de Renda</th>
-                    <th scope="col">Horas Pendentes</th>
                     <th scope="col">Descontos Totais</th>
                     <th scope="col">Salário Final</th>
                 </tr>
@@ -64,17 +64,19 @@
                     @if (Model != null)
                     {
 
-                        @foreach (var ferias in Model)
+                        @foreach (var demostrativo in Model)
                         {
                             <tr>
 
-                            <td>@ferias.Nome</td>
-                            <td>@ferias.CPF</td>
-                            <td>@ferias.Departamento</td>
-                            <td>@ferias.DataInicioFerias.ToString("dd/MM/yyyy")</td>
-                            <td>@ferias.DataTerminoFerias.ToString("dd/MM/yyyy")</td>
-                            <td>@ferias.QuantDias</td>
-                            <td>@ferias.AnoAquisitivo</td>
+                            <td>@demostrativo.nome</td>
+                            <td>@demostrativo.cpf</td>
+                            <td>@demostrativo.cargo</td>
+                            <td>@demostrativo.dataInicio.ToString("dd/MM/yyyy")</td>
+                            <td>@demostrativo.dataFinal.ToString("dd/MM/yyyy")</td>
+                            <td>@demostrativo.inss</td>
+                            <td>@demostrativo.impostoRenda</td>
+                            <td> @(Convert.ToDecimal(demostrativo.inss) + Convert.ToDecimal(demostrativo.impostoRenda))</td>
+                            <td>@demostrativo.salarioFinal</td>
 
 
                         </tr>

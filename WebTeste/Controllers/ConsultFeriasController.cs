@@ -26,7 +26,7 @@ namespace WebTeste.Controllers
                 if (idFunClaim != null)
                 {
    
-                        var feriasSQL = _bancoContext.Tab_Funcionario_Ferias.FromSqlRaw("SELECT Tab_Funcionario.NomeCompleto AS Nome, Tab_Funcionario.CPF AS CPF, " +
+                        var feriasSQL = _bancoContext.Tab_Funcionario_Ferias.FromSqlRaw("SELECT Tab_Ferias.Tb_IdFerias AS IdFer, Tab_Ferias.Tb_IdFuncionario AS Id, Tab_Funcionario.NomeCompleto AS Nome, Tab_Funcionario.CPF AS CPF, " +
                                   "Tab_Funcionario.tb_Departamento AS Departamento, Tab_Funcionario.LocalidadeAtual AS Localidade," +
                                   " Tab_Ferias.Tb_DataInicioFerias AS 'DataInicioFerias', Tab_Ferias.Tb_DataFinalFerias AS 'DataTerminoFerias'," +
                                   "Tab_Ferias.Tb_AnoAquisitivo AS 'AnoAquisitivo', Tab_Ferias.Tb_QuantidadeDiasParcela AS QuantDias" +
