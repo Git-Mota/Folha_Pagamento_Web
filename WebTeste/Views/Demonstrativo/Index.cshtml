@@ -24,17 +24,18 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 
     <div class="text-center">
         <h1 class="display-4">Demonstrativo Financeiro</h1>
     </div>
 
-    <div class="container">
+<label for="selecaoPonto">Selecione o mês desejado:</label>
         <div class="row">
             <div class="col-sm-2">
                 <form>
-                    <label for="selecaoPonto">Selecione o mês desejado:</label>
-                    <select id="selecaoPonto" class="form-control" name="tipoPonto">
+                        <select id="selecaoPonto" class="form-control" name="tipoPonto">
                         @foreach (var mes in mesesAnteriores)
                         {
                             <option value="@mes">@mes</option>
@@ -45,7 +46,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    
     <table class="table">
             <thead>
                 <tr>
@@ -77,11 +78,118 @@
                             <td>@demostrativo.impostoRenda</td>
                             <td> @(Convert.ToDecimal(demostrativo.inss) + Convert.ToDecimal(demostrativo.impostoRenda))</td>
                             <td>@demostrativo.salarioFinal</td>
-
-
                         </tr>
                     }
                 }
 
             </tbody>
     </table>
+
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="detalhesModal" tabindex="-1" role="dialog" aria-labelledby="detalhesModalLabel" aria-hidden="true" style="min-height: 80vh;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border rounded">
+            <div class="container" style="background-color: #007BFF; color: #fff; border-bottom: 1px solid #ddd; border-radius: 0.25rem 0.25rem 0 0; display: flex; align-items: center; justify-content: space-between; padding: 15px;">
+                <!-- Container para o nome da empresa -->
+                <div class="container">
+                    <h6 class="modal-title">BATATA - FRITANDO SEUS PROBLEMAS </h6>
+                    <h7 class="modal-title">CNPJ: 99.999.999/0001-99</h7>
+
+                </div>
+                <!-- Container para as informações do mês e ano -->
+                <div class="container text-right">
+                    <h6>Demonstrativo de Pagamento Salário<br />Contra Cheque<p>Mês e Ano: @mesAtual</p></h6>
+                   
+    
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- Container com linha divisória -->
+                <div class="container border-bottom mb-3 rounded" style="background-color: #ededf2; padding: 10px;">
+                    <!-- Container para as informações do funcionário -->
+                    <div class="container">
+                        <h6>Informações do Funcionário</h6>
+                        <p>Nome: @nome</p>
+                        <p>Departamento: @Departamento</p>
+                        <p>Cargo: </p>
+                        <p>CPF: </p>
+                    </div>
+                </div>
+                <!-- Container para os detalhes do demonstrativo -->
+                <div class="container border rounded" style="background-color: #ededf2; padding: 10px;">
+                    <h6>Detalhes do Demonstrativo</h6>
+                    <!-- Adicione mais detalhes conforme necessário -->
+                    <p>Nome:</p>
+                    <p>CPF:</p>
+                    <p>Cargo:</p>
+                    <p>Data de Início: 01/10/2023</p>
+                    <p>Data Final: 30/10/2023</p>
+                    <p>INSS: </p>
+                    <p>Imposto de Renda: </p>
+                    <p>Descontos Totais: </p>
+                    <p>Salário Final: </p>
+                </div>
+            </div>
+            <div class="modal-footer" style="background-color: #f8f9fa; border-top: 1px solid #ddd; border-radius: 0 0 0.25rem 0.25rem;">
+                <button type="button" class="btn btn-secondary" onclick="fecharModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                <script>
+    function abrirModal() {
+        $('#detalhesModal').modal('show');
+    }
+
+    // Função para fechar a modal
+    function fecharModal() {
+        $('#detalhesModal').modal('hide');
+    }
+
+    // Adicione isso ao seu botão de submit
+    $('form').submit(function (e) {
+        e.preventDefault(); // Impede o envio padrão do formulário
+        abrirModal();
+    });
+
+    // Adicione isso ao botão de fechar dentro da modal
+    $('#detalhesModal').on('hidden.bs.modal', function () {
+        // Limpar conteúdo da modal, se necessário
+    });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            // Defina o valor inicial ao carregar a página
+            atualizarMesAno();
+
+            // Adicione um ouvinte de evento para o evento de alteração do select
+            $('#selecaoPonto').change(function () {
+                // Atualize a <div> com o ano atual e o mês selecionado
+                atualizarMesAno();
+            });
+
+            function atualizarMesAno() {
+                // Obtenha o valor selecionado do select
+                var mesSelecionado = $('#selecaoPonto').val();
+
+                // Obtenha o ano atual
+                var anoAtual = new Date().getFullYear();
+
+                // Atualize o conteúdo da <div>
+                $('.container.text-right p').text('Mês e Ano: ' + mesSelecionado + ' ' + anoAtual);
+            }
+        });
+    </script>
