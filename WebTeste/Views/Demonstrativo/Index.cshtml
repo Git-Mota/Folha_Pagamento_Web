@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ConsultDemonstrativoModel>
+@using System.Globalization
 @{
     ViewData["Title"] = "Demonstrativo";
     var nome = User.Identity.Name;
@@ -34,8 +35,8 @@
 <label for="selecaoPonto">Selecione o mês desejado:</label>
         <div class="row">
             <div class="col-sm-2">
-                <form>
-                        <select id="selecaoPonto" class="form-control" name="tipoPonto">
+                <form id="selecaoForm">
+                    <select id="selecaoPonto" class="form-control" name="tipoPonto">
                         @foreach (var mes in mesesAnteriores)
                         {
                             <option value="@mes">@mes</option>
@@ -68,7 +69,6 @@
                         @foreach (var demostrativo in Model)
                         {
                             <tr>
-
                             <td>@demostrativo.nome</td>
                             <td>@demostrativo.cpf</td>
                             <td>@demostrativo.cargo</td>
@@ -85,7 +85,7 @@
             </tbody>
     </table>
 
-<!-- Modal -->
+
 <!-- Modal -->
 <div class="modal fade" id="detalhesModal" tabindex="-1" role="dialog" aria-labelledby="detalhesModalLabel" aria-hidden="true" style="min-height: 80vh;">
     <div class="modal-dialog modal-lg" role="document">
@@ -117,11 +117,19 @@
                     </div>
                 </div>
                 <!-- Container para os detalhes do demonstrativo -->
-                <div class="container border rounded" style="background-color: #ededf2; padding: 10px;">
-                    <h6>Detalhes do Demonstrativo</h6>
+
                     <!-- Adicione mais detalhes conforme necessário -->
-                    <table class="table">
+                
+                    
+                @if (Model != null)
+                {
+                    @foreach (var demonstrativo in Model)
+                    {
+                        <div class="container border rounded" style="background-color: #ededf2; padding: 10px;">
+                        <h6>Detalhes do Demonstrativo</h6>
+                        <table class="table table-bordered">
                         <thead>
+
                             <tr>
                                 <th colspan="2">Descrição</th>
                                 <th scope="col">Referência</th>
@@ -135,42 +143,36 @@
                                 <td colspan="2">Vale Refeição</td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
+                                <td>@demonstrativo.valeRefeicao</td>
                             </tr>
                             <tr>
                                 <td colspan="2">Vale Transporte</td>
                                 <td></td>
                                 <td></td>
-                                <td></td>
+                                <td>@demonstrativo.valeTransporte</td>
                             </tr>
                             <tr>
                                 <td colspan="2">INSS</td>
                                 <td></td>
-                                <td></td>
+                                <td>@demonstrativo.inss</td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td colspan="2">Imposto de Renda</td>
                                 <td></td>
-                                <td></td>
+                                <td>@demonstrativo.impostoRenda</td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td colspan="2">Valor Hora</td>
+                                <td>@demonstrativo.valorHora</td>
                                 <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">Vale Transporte</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>@demonstrativo.salarioBase</td>
                             </tr>
                             <tr>
                                 <td colspan="3">Observações</td>
-                                <td>Total Desc.</td>
-                                <td>Total Venc.</td>
+                                <td>Total Desc. -@(Convert.ToDecimal(demonstrativo.inss) + Convert.ToDecimal(demonstrativo.impostoRenda))</td>
+                                <td>Total Venc. @demonstrativo.salarioFinal</td>
                             </tr>
                             <tr>
                                 <td colspan="3" rowspan="2"></td>
@@ -178,12 +180,16 @@
                                 <td></td>
                             </tr>
                             <tr>
-                                <td colspan="3">Total Líquido: </td>
+                                <td colspan="3">Total Líquido: @demonstrativo.salarioFinal </td>
                             </tr>
                             <!-- Adicione mais linhas conforme necessário -->
-                        </tbody>
+                         </tbody>
                     </table>
-                </div>
+                        </div>
+                     <br/>   
+                    }
+                }
+                
             </div>
             <div class="modal-footer" style="background-color: #f8f9fa; border-top: 1px solid #ddd; border-radius: 0 0 0.25rem 0.25rem;">
                 <button type="button" class="btn btn-secondary" onclick="fecharModal()">Fechar</button>
@@ -224,26 +230,4 @@
     });
     </script>
 
-    <script>
-        $(document).ready(function () {
-            // Defina o valor inicial ao carregar a página
-            atualizarMesAno();
-
-            // Adicione um ouvinte de evento para o evento de alteração do select
-            $('#selecaoPonto').change(function () {
-                // Atualize a <div> com o ano atual e o mês selecionado
-                atualizarMesAno();
-            });
-
-            function atualizarMesAno() {
-                // Obtenha o valor selecionado do select
-                var mesSelecionado = $('#selecaoPonto').val();
-
-                // Obtenha o ano atual
-                var anoAtual = new Date().getFullYear();
-
-                // Atualize o conteúdo da <div>
-                $('.container.text-right p').text('Mês e Ano: ' + mesSelecionado + ' ' + anoAtual);
-            }
-        });
-    </script>
+ 
