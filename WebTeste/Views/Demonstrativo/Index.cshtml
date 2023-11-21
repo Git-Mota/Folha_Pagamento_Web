@@ -126,8 +126,9 @@
                     @foreach (var demonstrativo in Model)
                     {
                         <div class="container border rounded" style="background-color: #ededf2; padding: 10px;">
-                        <h6>Detalhes do Demonstrativo</h6>
-                        <table class="table table-bordered">
+                        <h6 class="text-center">Detalhes do Demonstrativo</h6>
+                            <table class="table table-dark table-striped">
+                                
                         <thead>
 
                             <tr>
@@ -176,8 +177,7 @@
                             </tr>
                             <tr>
                                 <td colspan="3" rowspan="2"></td>
-                                <td></td>
-                                <td></td>
+              
                             </tr>
                             <tr>
                                 <td colspan="3">Total Líquido: @demonstrativo.salarioFinal </td>
@@ -197,13 +197,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
 
 
 
