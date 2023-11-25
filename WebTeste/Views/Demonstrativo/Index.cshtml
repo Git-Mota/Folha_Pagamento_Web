@@ -6,9 +6,25 @@
     var DepartamentoClaim = User.FindFirst("Departamento");
     var Departamento = DepartamentoClaim != null ? DepartamentoClaim.Value : "N/A";
     var IdFuncionario = User.FindFirst("Id_Func");
+    string mesRec = ViewData["mesSelecionado"] as string ?? "";
 
     // Obter o mês atual
     var mesAtual = DateTime.Now.Month;
+    string nomeMesPorExtenso = ObterNomeMesPorExtenso(mesAtual);
+        static string ObterNomeMesPorExtenso(int numeroMes)
+        {
+            // Criar um objeto CultureInfo para o idioma desejado (no exemplo, usamos o português do Brasil)
+            CultureInfo cultura = new CultureInfo("pt-BR");
+
+            // Obter o objeto DateTimeFormatInfo para a cultura
+            DateTimeFormatInfo formatoData = cultura.DateTimeFormat;
+
+            // Obter o nome do mês por extenso
+            string nomeMesPorExtenso = formatoData.GetMonthName(numeroMes);
+              nomeMesPorExtenso = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(nomeMesPorExtenso);
+
+            return nomeMesPorExtenso;
+        }
 
     // Gerar uma lista de meses anteriores ao atual
     var mesesAnteriores = Enumerable.Range(1, mesAtual - 1)
@@ -36,7 +52,9 @@
         <div class="row">
             <div class="col-sm-2">
                 <form id="selecaoForm">
+                    <input type="hidden" id="mesSelecionado" name="mesSelecionado" value="" />
                     <select id="selecaoPonto" class="form-control" name="tipoPonto">
+                        <option value="" disabled selected>Selecione o mês</option>
                         @foreach (var mes in mesesAnteriores)
                         {
                             <option value="@mes">@mes</option>
@@ -99,7 +117,7 @@
                 </div>
                 <!-- Container para as informações do mês e ano -->
                 <div class="container text-right">
-                    <h6>Demonstrativo de Pagamento Salário<br />Contra Cheque<p>Mês e Ano: @mesAtual</p></h6>
+                    <h6>Demonstrativo de Pagamento Salário<br />Contra Cheque<p id="modalMesAno"></p></h6>
                    
     
                 </div>
@@ -123,11 +141,14 @@
                     
                 @if (Model != null)
                 {
+                  
+                    
                     @foreach (var demonstrativo in Model)
                     {
+
                         <div class="container border rounded" style="background-color: #ededf2; padding: 10px;">
                         <h6 class="text-center">Detalhes do Demonstrativo</h6>
-                            <table class="table table-dark table-striped">
+                            <table class="table table-bordered">
                                 
                         <thead>
 
@@ -201,26 +222,40 @@
 
 
 
-     <script>
-    function abrirModal() {
-        $('#detalhesModal').modal('show');
-    }
+    <script>
+        function abrirModal() {
+            $('#detalhesModal').modal('show');
+        }
 
-    // Função para fechar a modal
-    function fecharModal() {
-        $('#detalhesModal').modal('hide');
-    }
+        // Função para fechar a modal
+        function fecharModal() {
+            $('#detalhesModal').modal('hide');
+        }
 
-    // Adicione isso ao seu botão de submit
-    $('form').submit(function (e) {
-        e.preventDefault(); // Impede o envio padrão do formulário
-        abrirModal();
-    });
+        // Adicione isso ao seu botão de submit
+        $('form').submit(function (e) {
+            e.preventDefault(); // Impede o envio padrão do formulário
 
-    // Adicione isso ao botão de fechar dentro da modal
-    $('#detalhesModal').on('hidden.bs.modal', function () {
-        // Limpar conteúdo da modal, se necessário
-    });
+            // Obter o valor selecionado do mês
+            var mesSelecionado = $('#selecaoPonto').val();
+
+            // Preencher o campo oculto com o valor do mês selecionado
+            $('#mesSelecionado').val(mesSelecionado);
+            // Atribuir o valor do mês selecionado à variável mesRec
+            mesRec = mesSelecionado;
+            
+
+            // Exibir o mês selecionado na modal
+            $('#modalMesAno').text("Mês Selecionado: " + mesSelecionado);
+
+            // Abrir a modal
+            abrirModal();
+        });
+
+        // Adicione isso ao botão de fechar dentro da modal
+        $('#detalhesModal').on('hidden.bs.modal', function () {
+            // Limpar conteúdo da modal, se necessário
+        });
     </script>
 
  
