@@ -2,12 +2,13 @@
 @using System.Globalization
 @{
     ViewData["Title"] = "Demonstrativo";
-
+    var mesRec = ViewBag.MesRec as string ?? "";
     var nome = User.Identity.Name;
     var DepartamentoClaim = User.FindFirst("Departamento");
     var Departamento = DepartamentoClaim != null ? DepartamentoClaim.Value : "N/A";
     var IdFuncionario = User.FindFirst("Id_Func");
-    var mesRec = ViewData["mesSelecionado"] as string ?? "";
+
+
 
 
     // Obter o mês atual
@@ -36,6 +37,29 @@
 
     // Método para capitalizar a primeira letra de uma string
     string UppercaseFirst(string s) => char.ToUpper(s[0]) + s.Substring(1);
+
+    //Contar dias mes
+    static int ContarDiasDaSemana(DateTime dataInicial, DateTime dataFinal, DayOfWeek diaDaSemana)
+    {
+        int quantidadeDias = 0;
+
+        while (dataInicial.DayOfWeek != diaDaSemana)
+        {
+            dataInicial = dataInicial.AddDays(1);
+        }
+
+        while (dataInicial <= dataFinal)
+        {
+            if (dataInicial.DayOfWeek == diaDaSemana)
+            {
+                quantidadeDias++;
+            }
+
+            dataInicial = dataInicial.AddDays(7);
+        }
+
+        return quantidadeDias;
+}
 }
 
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -54,7 +78,7 @@
 <label for="selecaoPonto">Selecione o mês desejado:</label>
 <div class="row">
     <div class="col-sm-2">
-        <form id="selecaoForm">
+        <form id="selecaoForm" method="post">
             <input type="hidden" id="mesSelecionado" name="mesSelecionado" value="" />
             <select id="selecaoPonto" class="form-control" name="tipoPonto">
                 <option value="" disabled selected>Selecione o mês</option>
@@ -117,7 +141,7 @@
                 <div class="container">
                     <h6 class="modal-title">BATATA - FRITANDO SEUS PROBLEMAS </h6>
                     <h7 class="modal-title">CNPJ: 99.999.999/0001-99</h7>
-
+                    
                 </div>
                 <!-- Container para as informações do mês e ano -->
                 <div class="container text-right">
@@ -152,7 +176,7 @@
                        
                         {
                             <div class="container border rounded" style="background-color: #ededf2; padding: 10px;">
-                                <h6 class="text-center">Detalhes do Demonstrativo</h6>
+                                <h6 class="text-center">Detalhes do Demonstrativo: @demonstrativo.dataFinal.Month/@demonstrativo.dataInicio.Year  </h6>
                                 <table class="table table-bordered">
 
                                     <thead>
@@ -168,37 +192,48 @@
                                     <tbody>
                                         <tr>
                                             <td colspan="2">Vale Refeição</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>@demonstrativo.valeRefeicao</td>
+                                            <td style ="text-align: left;">@demonstrativo.valeRefeicao</td>
+                                            <td style="text-align: center;">0,00</td>
+                                            <td style="text-align: right;">@demonstrativo.valeRefeicao</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2">Vale Transporte</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>@demonstrativo.valeTransporte</td>
+                                            <td style ="text-align: left;">@demonstrativo.valeTransporte</td>
+                                            <td style ="text-align: center;"> 0,00 </td>
+                                            <td style="text-align: right;"> @demonstrativo.valeTransporte</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2">INSS</td>
-                                            <td></td>
-                                            <td>@demonstrativo.inss</td>
-                                            <td></td>
+                                            <td style="text-align: left;">@demonstrativo.inss</td>
+                                            <td style="text-align: center;">-@demonstrativo.inss</td>
+                                            <td style="text-align: right;">0,00</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2">Imposto de Renda</td>
-                                            <td></td>
-                                            <td>@demonstrativo.impostoRenda</td>
-                                            <td></td>
+                                            <td style="text-align: left;">@demonstrativo.impostoRenda</td>
+                                            <td style="text-align: center;">-@demonstrativo.impostoRenda</td>
+                                            <td style="text-align: right;">0,00</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2">Valor Hora</td>
-                                            <td>@demonstrativo.valorHora</td>
-                                            <td></td>
-                                            <td>@demonstrativo.salarioBase</td>
+                                            <td style="text-align: left;">@demonstrativo.valorHora</td>
+                                            <td style="text-align: center;">
+                                                    @{
+                                                        int ano = demonstrativo.dataInicio.Year;
+                                                        int mes = demonstrativo.dataInicio.Month;
+                                                        DateTime primeiroDiaDoMes = new DateTime(ano, mes, 1);
+                                                        DateTime ultimoDiaDoMes = primeiroDiaDoMes.AddMonths(1).AddDays(-1);
+                                                        int sabados = ContarDiasDaSemana(primeiroDiaDoMes, ultimoDiaDoMes, DayOfWeek.Saturday);
+                                                        int domingos = ContarDiasDaSemana(primeiroDiaDoMes, ultimoDiaDoMes, DayOfWeek.Sunday);
+                                                        int diasMes = (DateTime.DaysInMonth(ano, mes) - sabados - domingos);
+                                                    }
+                                                -@(diasMes * (Convert.ToDecimal(demonstrativo.valorHora) * 8) - demonstrativo.salarioBase)
+                                            </td>
+                                            <td style="text-align: right;">@demonstrativo.salarioBase</td>
                                         </tr>
                                         <tr>
                                             <td colspan="3">Observações</td>
-                                            <td>Total Desc. -@(Convert.ToDecimal(demonstrativo.inss) + Convert.ToDecimal(demonstrativo.impostoRenda))</td>
+                                            <td>Total Desc. -@(Convert.ToDecimal(demonstrativo.inss) + Convert.ToDecimal(demonstrativo.impostoRenda) + (diasMes * (Convert.ToDecimal(demonstrativo.valorHora) * 8) - demonstrativo.salarioBase))</td>
                                             <td>Total Venc. @demonstrativo.salarioFinal</td>
                                         </tr>
                                         <tr>
@@ -241,27 +276,37 @@
     }
 
     // Adicione isso ao seu botão de submit
-    $('form').submit(function (e) {
-        e.preventDefault(); // Impede o envio padrão do formulário
+    function abrirModal() {
+        $('#detalhesModal').modal('show');
+    }
 
-        // Obter o valor selecionado do mês
-        var mesSelecionado = $('#selecaoPonto').val();
+    function fecharModal() {
+        $('#detalhesModal').modal('hide');
+    }
 
-        // Preencher o campo oculto com o valor do mês selecionado
-        $('#mesSelecionado').val(mesSelecionado);
+    // Adicione isso ao seu botão de submit
+    $(document).ready(function () {
+        $('form').submit(function (e) {
+            // Impede o envio padrão do formulário
+            e.preventDefault();
 
-        // Atribuir o valor do mês selecionado à variável global mesRec
-        mesRec = mesSelecionado;
+            // Obter o valor selecionado do mês
+            var mesSelecionado = $('#selecaoPonto').val();
 
-        // Exibir o mês selecionado na modal
-        $('#modalMesAno').text("Mês Selecionado: " + mesSelecionado);
-
-        // Abrir a modal
-        abrirModal();
-    });
-
-    // Adicione isso ao botão de fechar dentro da modal
-    $('#detalhesModal').on('hidden.bs.modal', function () {
-        // Limpar conteúdo da modal, se necessário
+            // Realizar a chamada AJAX para a controladora
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Consulta", "Demonstrativo")', // Substitua "Demonstrativo" pelo nome do seu controlador
+                data: { mesSelecionado: mesSelecionado },
+                success: function (data) {
+                    // Manipular a resposta do servidor, se necessário
+                    abrirModal();
+                    $('#modalMesAno').text("Mês Selecionado: " + mesSelecionado);
+                },
+                error: function () {
+                    // Lidar com erros, se houver
+                }
+            });
+        });
     });
 </script>
