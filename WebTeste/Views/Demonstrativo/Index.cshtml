@@ -77,24 +77,15 @@
     <h1 class="display-4">Demonstrativo Financeiro</h1>
 </div>
 
-<label for="selecaoPonto">Selecione o mês desejado:</label>
+
 <div class="row">
     <div class="col-sm-2">
         <form id="selecaoForm" method="post">
-            <input type="hidden" id="mesSelecionado" name="mesSelecionado" value="" />
-            <select id="selecaoPonto" class="form-control" name="tipoPonto">
-                <option value="" disabled selected>Selecione o mês</option>
-                @foreach (var mes in mesesAnteriores)
-                {
-                    <option value="@mes">@mes</option>
-                }
-            </select>
-            <br />
             <button type="submit" class="btn btn-warning">Detalhar</button>
         </form>
     </div>
 </div>
-<br />
+
 
 <table class="table table-striped table-bordered" style="background-color: rgba(255, 255, 255, 0.7);">
     <thead>
