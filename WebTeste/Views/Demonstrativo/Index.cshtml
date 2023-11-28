@@ -230,14 +230,14 @@
                                         <tr>
                                             <td colspan="3">Observações</td>
                                             <td>Total Desc. -@(Convert.ToDecimal(demonstrativo.inss) + Convert.ToDecimal(demonstrativo.impostoRenda) + (diasMes * (Convert.ToDecimal(demonstrativo.valorHora) * 8) - demonstrativo.salarioBase))</td>
-                                            <td>Total Venc. @demonstrativo.salarioFinal</td>
+                                            <td>Total Venc. @(demonstrativo.salarioFinal + @demonstrativo.valeRefeicao + @demonstrativo.valeTransporte) </td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" rowspan="2"></td>
 
                                         </tr>
                                         <tr>
-                                            <td colspan="3">Total Líquido: @demonstrativo.salarioFinal </td>
+                                            <td colspan="3">Total Líquido: @((demonstrativo.salarioFinal + @demonstrativo.valeRefeicao + @demonstrativo.valeTransporte) - (Convert.ToDecimal(demonstrativo.inss) + Convert.ToDecimal(demonstrativo.impostoRenda) + (diasMes * (Convert.ToDecimal(demonstrativo.valorHora) * 8) - demonstrativo.salarioBase))) </td>
                                         </tr>
                                         <!-- Adicione mais linhas conforme necessário -->
                                     </tbody>
