@@ -207,6 +207,16 @@ body {
     .mensagem-3d p {
         margin: 0; /* Remova a margem padrão para evitar espaçamento indesejado */
     }
+button {
+    background-color: #ffc000; /* Cor de fundo alaranjada */
+    color: black; /* Cor do texto branca */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.3); /* Sombra 3D */
+    text-align: center;
+    font-size: 16px;
+  
+}
 
 
 

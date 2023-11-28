@@ -17,6 +17,7 @@ body {
     margin-bottom: 0;
     background-image: url('../images/fundoWeb.png');
     background-size: cover;
+
 }
 
 .cabecalho-classe {
@@ -86,10 +87,13 @@ body {
 .modal-header {
     color: white; /* Substitua "#FF0000" pela cor desejada */
     text-align: center;
+
 }
 footer {
-    background-color:#ffc000;
-    align-self:center;
+    background-color: #ffc000;
+    align-self: center;
+    margin-top: 20px;
+    mar
 }
 .full-width-carousel {
     width: 100%; /* Define a largura como 100% */
