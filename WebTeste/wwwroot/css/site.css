@@ -14,7 +14,7 @@ html {
 }
 
 body {
-    margin-bottom: 0;
+    margin-bottom: 100px;
     background-image: url('../images/fundoWeb.png');
     background-size: cover;
 
@@ -90,11 +90,14 @@ body {
 
 }
 footer {
+    padding: 0px;
     background-color: #ffc000;
     align-self: center;
-    margin-top: 20px;
-    mar
+    margin-top: 100px;
+
+   
 }
+
 .full-width-carousel {
     width: 100%; /* Define a largura como 100% */
     margin: 0; /* Remove as margens para ocupar toda a largura da tela */
