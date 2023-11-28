@@ -36,6 +36,8 @@ namespace WebTeste.Controllers
                 var funcionario = _bancoContext.Tab_Funcionario.FirstOrDefault(func => func.Id == usuario.db_Id_Funcionario);
                 var nome = funcionario.NomeCompleto;
                 var departamento = funcionario.tb_Departamento;
+                var cpf = funcionario.CPF;
+                var cargo = funcionario.tb_Cargo;
                 
                 if (funcionario != null)
                 {
@@ -44,7 +46,9 @@ namespace WebTeste.Controllers
                     {
                         new Claim("Id_Func",funcionario.Id.ToString()),
                         new Claim(ClaimTypes.Name, funcionario.NomeCompleto),
-                        new Claim("Departamento", funcionario.tb_Departamento)
+                        new Claim("Departamento", funcionario.tb_Departamento),
+                        new Claim("CPF", funcionario.CPF),
+                        new Claim("Cargo", funcionario.tb_Cargo)
                     };
 
                     var identity = new ClaimsIdentity(claims, "FuncionarioIdentity");

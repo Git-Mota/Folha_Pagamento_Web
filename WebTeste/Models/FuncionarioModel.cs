@@ -9,5 +9,6 @@ namespace WebTeste.Models
         public string NomeCompleto { get; set; }
         public string CPF { get; set; }
         public string tb_Departamento { get; set; }
+        public string tb_Cargo {  get; set; }
     }
 }

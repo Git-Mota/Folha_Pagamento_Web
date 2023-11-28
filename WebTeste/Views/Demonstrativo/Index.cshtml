@@ -7,6 +7,8 @@
     var DepartamentoClaim = User.FindFirst("Departamento");
     var Departamento = DepartamentoClaim != null ? DepartamentoClaim.Value : "N/A";
     var IdFuncionario = User.FindFirst("Id_Func");
+    var Cargo = User.FindFirst("Cargo");
+    var CPF = User.FindFirst("CPF");
 
 
 
@@ -137,7 +139,7 @@
 <div class="modal fade" id="detalhesModal" tabindex="-1" role="dialog" aria-labelledby="detalhesModalLabel" aria-hidden="true" style="min-height: 80vh;">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border rounded">
-            <div class="container" style="background-color: #ffc000; color: black; border-bottom: 1px solid #ddd; border-radius: 0.25rem 0.25rem 0 0; display: flex; align-items: center; justify-content: space-between; padding: 15px;">
+            <div class="container" style="background-color: #ffc000; color: black;  border-radius: 1.25rem 1.25rem ; display: flex; align-items: center; justify-content: space-between; padding: 15px;">
                 <!-- Container para o nome da empresa -->
                 <div class="container">
                     <h6 class="modal-title">BATATA - FRITANDO SEUS PROBLEMAS </h6>
@@ -153,16 +155,17 @@
             </div>
             <div class="modal-body">
                 <!-- Container com linha divisória -->
-                <div class="container border-bottom mb-3 rounded" style="background-color: #ededf2; padding: 10px;">
+                <div class="container" style="background-color: rgba(238, 238, 238, 0.5); padding: 10px; border-radius: 1.25rem 1.25rem ; ">
                     <!-- Container para as informações do funcionário -->
                     <div class="container">
                         <h6>Informações do Funcionário</h6>
                         <p>Nome: @nome</p>
                         <p>Departamento: @Departamento</p>
-                        <p>Cargo: </p>
-                        <p>CPF: </p>
+                        <p>@Cargo </p>
+                        <p>@CPF </p>
                     </div>
                 </div>
+                <br />
                 <!-- Container para os detalhes do demonstrativo -->
                 <!-- Adicione mais detalhes conforme necessário -->
                 @if (Model != null)
@@ -176,9 +179,10 @@
                     {
                        
                         {
-                            <div class="container border rounded" style="background-color: #ededf2; padding: 10px;">
+                            <div class="container" style="background-color:  rgba(255, 255, 255, 0.7); padding: 10px; border-radius: 1.25rem 1.25rem;">
                                 <h6 class="text-center">Detalhes do Demonstrativo: @demonstrativo.dataFinal.Month/@demonstrativo.dataInicio.Year  </h6>
-                                <table class="table table-bordered">
+                                <table class="table table-bordered" style="background-color: rgba(255, 255, 255, 0.7);">
+                                   
 
                                     <thead>
 
@@ -294,6 +298,7 @@
             // Obter o valor selecionado do mês
             var mesSelecionado = $('#selecaoPonto').val();
 
+            /*
             // Realizar a chamada AJAX para a controladora
             $.ajax({
                 type: 'POST',
@@ -308,6 +313,8 @@
                     // Lidar com erros, se houver
                 }
             });
+            */
+            abrirModal();
         });
     });
 </script>
