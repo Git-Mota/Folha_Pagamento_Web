@@ -14,8 +14,7 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
-    background: linear-gradient(#d1ced1, #daa84b);
+    background: linear-gradient(#ffe9a6, #ffc000);
 }
 
 .cabecalho-classe {
@@ -86,3 +85,17 @@ body {
     color: white; /* Substitua "#FF0000" pela cor desejada */
     text-align: center;
 }
+body {
+    margin: 0;
+    padding: 0;
+}
+
+footer {
+    background-color: #ffc000; /* Cor de fundo do rodapé (opcional, ajuste conforme necessário) */
+}
+
+    footer img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
