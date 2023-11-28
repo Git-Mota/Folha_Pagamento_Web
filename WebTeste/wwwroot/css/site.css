@@ -17,6 +17,7 @@ body {
     margin-bottom: 100px;
     background-image: url('../images/fundoWeb.png');
     background-size: cover;
+    padding-bottom:150px;
 
 }
 
@@ -90,12 +91,12 @@ body {
 
 }
 footer {
-    padding: 0px;
+   
+    /*padding: -10px;*/
     background-color: #ffc000;
     align-self: center;
     margin-top: 100px;
-
-   
+    width: 100%;
 }
 
 .full-width-carousel {
