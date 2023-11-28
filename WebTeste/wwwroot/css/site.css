@@ -14,8 +14,9 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
-    background: linear-gradient(#d1ced1, #daa84b);
+    margin-bottom: 0;
+    background-image: url('../images/fundoWeb.png');
+    background-size: cover;
 }
 
 .cabecalho-classe {
@@ -85,4 +86,17 @@ body {
 .modal-header {
     color: white; /* Substitua "#FF0000" pela cor desejada */
     text-align: center;
+}
+footer {
+    background-color:#ffc000;
+    align-self:center;
+}
+.full-width-carousel {
+    width: 100%; /* Define a largura como 100% */
+    margin: 0; /* Remove as margens para ocupar toda a largura da tela */
+}
+header {
+    background-color: #eeeeee;
+    color: white; /* Cor do texto no cabeçalho */
+    width: 100%;
 }

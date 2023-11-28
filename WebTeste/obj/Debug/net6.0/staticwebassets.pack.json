@@ -9,8 +9,16 @@
       "PackagePath": "staticwebassets\\Images\\fachada.jpg"
     },
     {
+      "Id": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\Images\\fundoWeb.png",
+      "PackagePath": "staticwebassets\\Images\\fundoWeb.png"
+    },
+    {
       "Id": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\Images\\refetorio.jpg",
       "PackagePath": "staticwebassets\\Images\\refetorio.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\Images\\rodape0202.png",
+      "PackagePath": "staticwebassets\\Images\\rodape0202.png"
     },
     {
       "Id": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\css\\barra.css",
