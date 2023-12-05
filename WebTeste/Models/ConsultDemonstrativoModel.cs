@@ -13,8 +13,8 @@ namespace WebTeste.Models
         public decimal? valorHora { get; set; }
         public decimal? HoraSemanal { get; set; }
         public string? cargo { get; set; }
-        public DateTime dataInicio { get; set; }
-        public DateTime dataFinal { get; set; }
+        public DateTime DataInicio { get; set; }
+        public DateTime DataFinal { get; set; }
         public decimal? salarioBase { get; set; }
         public decimal? salarioFinal { get; set; }
         public decimal? inss { get; set; }
