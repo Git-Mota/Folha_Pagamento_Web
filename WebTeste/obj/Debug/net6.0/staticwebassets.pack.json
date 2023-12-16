@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\Images\\fachada.jpg"
     },
     {
+      "Id": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\Images\\fundo-amarelo.png",
+      "PackagePath": "staticwebassets\\Images\\fundo-amarelo.png"
+    },
+    {
       "Id": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\wwwroot\\Images\\fundoWeb.png",
       "PackagePath": "staticwebassets\\Images\\fundoWeb.png"
     },
