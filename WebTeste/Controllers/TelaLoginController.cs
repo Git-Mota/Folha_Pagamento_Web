@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using WebTeste.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-
+using Operacao;
 
 namespace WebTeste.Controllers
 {
@@ -20,16 +20,15 @@ namespace WebTeste.Controllers
         }
         public IActionResult Login()
         {
-        if (TempData["Mensagem"] != null)
-         {
-            ViewBag.Mensagem = TempData["Mensagem"];
-         }
+            if (TempData["Mensagem"] != null)
+            {
+                ViewBag.Mensagem = TempData["Mensagem"];
+            }
             return View();
         }
         [HttpPost]
         public IActionResult ValidaLogin(UsuarioModel model)
-        { 
-
+        {
             var usuario = _bancoContext.Tab_Usuario.FirstOrDefault(usr => usr.db_Cpf == model.db_Cpf && usr.db_Senha == model.db_Senha);
             if (usuario != null)
             {
@@ -38,7 +37,7 @@ namespace WebTeste.Controllers
                 var departamento = funcionario.tb_Departamento;
                 var cpf = funcionario.CPF;
                 var cargo = funcionario.tb_Cargo;
-                
+
                 if (funcionario != null)
                 {
                     // Crie um ClaimsIdentity com as informações do funcionário
@@ -64,6 +63,31 @@ namespace WebTeste.Controllers
                 }
             }
             TempData["Mensagem"] = "Usuario ou senha incorretos, tente novamente.";
+            ViewBag.Mensagem = TempData["Mensagem"];
+            return RedirectToAction("Login");
+        }
+
+        [HttpPost]
+        public IActionResult EsqueciSenha(UsuarioModel model)
+        {
+            var usuario = _bancoContext.Tab_Usuario.FirstOrDefault(usr => usr.db_Cpf == model.db_Cpf);
+            if (usuario != null)
+            {
+                DisparaEmail objDisparaEmail = new DisparaEmail(model.db_Cpf);
+                if (objDisparaEmail.EnviarEmail())
+                {
+                    TempData["Mensagem"] = "Senha provisoria enviada para e-mail de recuperação com sucesso !";
+                    ViewBag.Mensagem = TempData["Mensagem"];
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    TempData["Mensagem"] = "Email de recuperação não enviado, entre em contato com o gestor.";
+                    ViewBag.Mensagem = TempData["Mensagem"];
+                    return RedirectToAction("Login");
+                }
+            }
+            TempData["Mensagem"] = "Email de recuperação não encontrado, entre em contato com o gestor.";
             ViewBag.Mensagem = TempData["Mensagem"];
             return RedirectToAction("Login");
         }

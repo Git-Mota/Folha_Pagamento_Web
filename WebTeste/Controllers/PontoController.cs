@@ -15,8 +15,6 @@ namespace WebTeste.Controllers
             _bancoContext = bancoContext;
         }
 
- 
-
         public IActionResult Index(int RecId)
         {
             
@@ -279,15 +277,7 @@ namespace WebTeste.Controllers
                     break;
 
             }
-
-
-
-
-             
             return RedirectToAction("Index");
-
-         
-
         }
 
     }

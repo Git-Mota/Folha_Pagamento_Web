@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "i1IqXU2tiwd/LZUsMHaz+iqZS1GFSFyXwh8vQj/U/7UhS2S+CMqRI6nKWZYhHoYblsw+BEeyzuqNuzqPPXKGSQ==",
+  "dgSpecHash": "ZFoz/C8R2hTaZl5vz0b+39PI6Igqn6OjJqNpe7j35Xrs0auTthgAvXsWmEqG5U4mq+VMO2lUdpYiWF7UAsFN2A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Junior\\Documents\\GitHub\\WebTeste\\WebTeste\\WebTeste.csproj",
   "expectedPackageFiles": [
@@ -61,6 +61,7 @@
     "C:\\Users\\Junior\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\Junior\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\Junior\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
+    "C:\\Users\\Junior\\.nuget\\packages\\microsoft.sqlserver.types\\160.1000.6\\microsoft.sqlserver.types.160.1000.6.nupkg.sha512",
     "C:\\Users\\Junior\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\Junior\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\Junior\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",

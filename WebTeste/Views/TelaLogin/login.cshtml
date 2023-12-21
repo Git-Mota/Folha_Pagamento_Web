@@ -28,8 +28,56 @@
                 <label>Senha</label>
             </div>
             <button type="submit" style="display: inline-block;">Acessar</button>
-            <button onclick="location.href='mailto:suporte@batata.com?subject=Redefinição de Senha'" style="display: inline-block; margin-left: 65px" class="forgot-password">Recuperar senha</button>
+            <button id="IdSolicitarRecupera" style="display: inline-block;margin-left: 65px" > Esqueci a senha</button>
+           <!-- <button onclick="location.href='mailto:suporte@batata.com?subject=Redefinição de Senha'" style="display: inline-block; margin-left: 65px" class="forgot-password">Recuperar senha</button> --> 
         </form>
     </div>
 </body>
 </html>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<div class="modal fade" id="esqueciSenhaModal" tabindex="-1" aria-labelledby="pontoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div classe="texto-centro">
+                    <h1 class="modal-title fs-5" id="pontoModalLabel">Solicitação de senha</h1>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form asp-controller="TelaLogin" asp-action="EsqueciSenha" method="post">
+                    <br />
+
+                    <div class="texto-esquerda">
+                        <label for="IdCPF">Digite seu CPF:</label>
+                        <input type="text" id="IdCPF" class="form-control" name="db_Cpf" /><br />
+                    </div>
+                    <div class="alertaEmail">Uma senha provisoria será enviada para o email de <br /> recuperação associado ao CPF digitado.</div>
+                    <div class="modal-body text-center">
+                    <button id="IdEnviarRecuperacao" style="background-color: #ffc000;border:none" class="btn btn-primary">Solicitar <br />Recuperação</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+        $("#IdSolicitarRecupera").click(function () {
+            $("#esqueciSenhaModal").modal('show');
+        });
+
+        $("#fecharModal").click(function () {
+            $("#esqueciSenhaModal").modal('hide');
+        });
+    });
+
+</script>

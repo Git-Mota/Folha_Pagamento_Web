@@ -72,6 +72,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.12, )"
+            },
+            "Microsoft.SqlServer.Types": {
+              "target": "Package",
+              "version": "[160.1000.6, )"
             }
           },
           "imports": [

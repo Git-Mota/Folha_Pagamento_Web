@@ -77,7 +77,7 @@
     <h1 class="display-4">Demonstrativo Financeiro</h1>
 </div>
 
-
+<h1>
 <div class="row">
     <div class="col-sm-2">
         <form id="selecaoForm" method="post">
@@ -85,6 +85,7 @@
         </form>
     </div>
 </div>
+</h1>
 
 
 <table class="table table-striped table-bordered" style="background-color: rgba(255, 255, 255, 0.7);">
@@ -106,7 +107,7 @@
 
             @foreach (var demostrativo in Model)
             {
-                <tr>
+                <tr style="text-align:center;">
                     <td>@demostrativo.nome</td>
                     <td>@demostrativo.cpf</td>
                     <td>@demostrativo.cargo</td>
@@ -155,22 +156,16 @@
                     </div>
                 </div>
                 <br />
-                <!-- Container para os detalhes do demonstrativo -->
-                <!-- Adicione mais detalhes conforme necessário -->
+
+
                 @if (Model != null)
                 {
-
-                    // Serializar os dados no C# e passar para o JavaScript
-
-
-
                     @foreach (var demonstrativo in Model)
                     {
-                       
                         {
-                            <div class="container" style="background-color:  rgba(255, 255, 255, 0.7); padding: 10px; border-radius: 1.25rem 1.25rem;">
+                            <div class="container" style="background-color: rgba(238, 238, 238, 0.5); padding: 10px; border-radius: 1.25rem 1.25rem;">
                                 <h6 class="text-center">Detalhes do Demonstrativo: @demonstrativo.DataFinal.Month/@demonstrativo.DataInicio.Year  </h6>
-                                <table class="table table-bordered" style="background-color: rgba(255, 255, 255, 0.7);">
+                                <table class="table table-bordered" style="background-color: rgba(238, 238, 238, 0.5);">
                                    
 
                                     <thead>
@@ -226,18 +221,17 @@
                                             <td style="text-align: right;">@demonstrativo.salarioBase</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3">Observações</td>
-                                            <td>Total Desc. -@(Convert.ToDecimal(demonstrativo.inss) + Convert.ToDecimal(demonstrativo.impostoRenda) + (diasMes * (Convert.ToDecimal(demonstrativo.valorHora) * 8) - demonstrativo.salarioBase))</td>
-                                            <td>Total Venc. @(demonstrativo.salarioFinal + @demonstrativo.valeRefeicao + @demonstrativo.valeTransporte) </td>
+                                            <td colspan="3"; style="font-size:small" >Observações: Valor das horas não trabalhadas <br/> já descontado nos vencimentos.</td>
+                                            <td>Total Desc. -@(Convert.ToDecimal(demonstrativo.inss) + Convert.ToDecimal(demonstrativo.impostoRenda))</td>
+                                            <td>Total Venc. @(demonstrativo.salarioBase + @demonstrativo.valeRefeicao + @demonstrativo.valeTransporte) </td>
                                         </tr>
                                         <tr>
                                             <td colspan="3" rowspan="2"></td>
 
                                         </tr>
                                         <tr>
-                                            <td colspan="3">Total Líquido: @((demonstrativo.salarioFinal + @demonstrativo.valeRefeicao + @demonstrativo.valeTransporte) - (Convert.ToDecimal(demonstrativo.inss) + Convert.ToDecimal(demonstrativo.impostoRenda) + (diasMes * (Convert.ToDecimal(demonstrativo.valorHora) * 8) - demonstrativo.salarioBase))) </td>
+                                            <td colspan="3">Total Líquido: @((demonstrativo.salarioBase + @demonstrativo.valeRefeicao + @demonstrativo.valeTransporte) - (Convert.ToDecimal(demonstrativo.inss) + Convert.ToDecimal(demonstrativo.impostoRenda))) </td>
                                         </tr>
-                                        <!-- Adicione mais linhas conforme necessário -->
                                     </tbody>
                                 </table>
                             </div>
@@ -283,26 +277,8 @@
         $('form').submit(function (e) {
             // Impede o envio padrão do formulário
             e.preventDefault();
-
             // Obter o valor selecionado do mês
             var mesSelecionado = $('#selecaoPonto').val();
-
-            /*
-            // Realizar a chamada AJAX para a controladora
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("Consulta", "Demonstrativo")', // Substitua "Demonstrativo" pelo nome do seu controlador
-                data: { mesSelecionado: mesSelecionado },
-                success: function (data) {
-                    // Manipular a resposta do servidor, se necessário
-                    abrirModal();
-                    $('#modalMesAno').text("Mês Selecionado: " + mesSelecionado);
-                },
-                error: function () {
-                    // Lidar com erros, se houver
-                }
-            });
-            */
             abrirModal();
         });
     });

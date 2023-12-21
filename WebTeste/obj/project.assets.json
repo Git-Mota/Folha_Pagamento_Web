@@ -992,6 +992,60 @@
           }
         }
       },
+      "Microsoft.SqlServer.Types/160.1000.6": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.SqlServer.Server": "1.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.1/Microsoft.SqlServer.Types.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.SqlServer.Types.dll": {}
+        },
+        "resource": {
+          "lib/netstandard2.1/de/Microsoft.SqlServer.Types.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard2.1/es/Microsoft.SqlServer.Types.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard2.1/fr/Microsoft.SqlServer.Types.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard2.1/it/Microsoft.SqlServer.Types.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard2.1/ja/Microsoft.SqlServer.Types.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard2.1/ko/Microsoft.SqlServer.Types.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard2.1/pt-BR/Microsoft.SqlServer.Types.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard2.1/ru/Microsoft.SqlServer.Types.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard2.1/zh-Hans/Microsoft.SqlServer.Types.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard2.1/zh-Hant/Microsoft.SqlServer.Types.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win-x64/native/SqlServerSpatial160.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/SqlServerSpatial160.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
+        }
+      },
       "Microsoft.Win32.Registry/4.5.0": {
         "type": "package",
         "dependencies": {
@@ -2701,6 +2755,43 @@
         "microsoft.sqlserver.server.nuspec"
       ]
     },
+    "Microsoft.SqlServer.Types/160.1000.6": {
+      "sha512": "4kk+rz5vnIPr9ENzm8KttUbhBKftv0uHSSFDVjc5OuKPtRP5q0lDbYUy5ZsoYCAG3RrZdJoxPnWN2JNozZAiGA==",
+      "type": "package",
+      "path": "microsoft.sqlserver.types/160.1000.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/net462/Microsoft.SqlServer.Types.props",
+        "lib/net462/Microsoft.SqlServer.Types.dll",
+        "lib/net462/de/Microsoft.SqlServer.Types.resources.dll",
+        "lib/net462/es/Microsoft.SqlServer.Types.resources.dll",
+        "lib/net462/fr/Microsoft.SqlServer.Types.resources.dll",
+        "lib/net462/it/Microsoft.SqlServer.Types.resources.dll",
+        "lib/net462/ja/Microsoft.SqlServer.Types.resources.dll",
+        "lib/net462/ko/Microsoft.SqlServer.Types.resources.dll",
+        "lib/net462/pt/Microsoft.SqlServer.Types.resources.dll",
+        "lib/net462/ru/Microsoft.SqlServer.Types.resources.dll",
+        "lib/net462/zh-Hans/Microsoft.SqlServer.Types.resources.dll",
+        "lib/net462/zh-Hant/Microsoft.SqlServer.Types.resources.dll",
+        "lib/netstandard2.1/Microsoft.SqlServer.Types.dll",
+        "lib/netstandard2.1/de/Microsoft.SqlServer.Types.resources.dll",
+        "lib/netstandard2.1/es/Microsoft.SqlServer.Types.resources.dll",
+        "lib/netstandard2.1/fr/Microsoft.SqlServer.Types.resources.dll",
+        "lib/netstandard2.1/it/Microsoft.SqlServer.Types.resources.dll",
+        "lib/netstandard2.1/ja/Microsoft.SqlServer.Types.resources.dll",
+        "lib/netstandard2.1/ko/Microsoft.SqlServer.Types.resources.dll",
+        "lib/netstandard2.1/pt-BR/Microsoft.SqlServer.Types.resources.dll",
+        "lib/netstandard2.1/ru/Microsoft.SqlServer.Types.resources.dll",
+        "lib/netstandard2.1/zh-Hans/Microsoft.SqlServer.Types.resources.dll",
+        "lib/netstandard2.1/zh-Hant/Microsoft.SqlServer.Types.resources.dll",
+        "license.md",
+        "microsoft.sqlserver.types.160.1000.6.nupkg.sha512",
+        "microsoft.sqlserver.types.nuspec",
+        "runtimes/win-x64/native/SqlServerSpatial160.dll",
+        "runtimes/win-x86/native/SqlServerSpatial160.dll"
+      ]
+    },
     "Microsoft.Win32.Registry/4.5.0": {
       "sha512": "+FWlwd//+Tt56316p00hVePBCouXyEzT86Jb3+AuRotTND0IYn0OO3obs1gnQEs/txEnt+rF2JBGLItTG+Be6A==",
       "type": "package",
@@ -3854,7 +3945,8 @@
       "Microsoft.EntityFrameworkCore >= 7.0.12",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.12",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.12",
-      "Microsoft.EntityFrameworkCore.Tools >= 7.0.12"
+      "Microsoft.EntityFrameworkCore.Tools >= 7.0.12",
+      "Microsoft.SqlServer.Types >= 160.1000.6"
     ]
   },
   "packageFolders": {
@@ -3929,6 +4021,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[7.0.12, )"
+          },
+          "Microsoft.SqlServer.Types": {
+            "target": "Package",
+            "version": "[160.1000.6, )"
           }
         },
         "imports": [

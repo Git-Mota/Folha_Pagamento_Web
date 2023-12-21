@@ -1,0 +1,80 @@
+﻿
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<div class="modal fade" id="pontoModal" tabindex="-1" aria-labelledby="pontoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div classe="texto-centro">
+                    <h1 class="modal-title fs-5" id="pontoModalLabel">Recuperação de senha</h1>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form asp-controller="Ponto" asp-action="SalvarPonto" method="post">
+
+                    <div class="texto-esquerda">
+                        <label for="nome" class="texto-esquerda">Nome:</label>
+                    </div>
+
+
+
+
+
+                    <div class="texto-esquerda">
+                        <label for="IddataForm">Data:</label>
+                        <input type="text" id="IddataForm" class="form-control" name="db_Data" disabled /><br />
+                    </div>
+
+                    <div class="texto-esquerda">
+                        <label for="IdDiaSemana">Dia da Semana:</label>
+                        <input type="text" id="IdDiaSemana" class="form-control" name="db_DiaSemana" disabled /><br />
+                    </div>
+
+                    <div class="texto-esquerda">
+                        <label for="selecaoTipPonto">Selecione o tipo de Ponto:</label>
+                        <select id="selecaoPonto" class="form-control" name="tipoPonto">
+                            <option value="PontEntrada">Ponto de Entrada</option>
+                            <option value="PontoIniAlmo">Ponto de Inicio Almoço</option>
+                            <option value="PontoTermAlmo">Ponto Término Almoço</option>
+                            <option value="PontoIniPausa">Ponto Inicio Pausa</option>
+                            <option value="PontoTermPausa">Ponto Término Pausa</option>
+                            <option value="PontoSaida">Ponto de Saida</option>
+                        </select>
+                    </div>
+                    <br />
+                    <div class="texto-centro">
+                        <label for="horaAtual">Hora Atual:</label>
+                    </div>
+                    <br />
+                    <input type="text" id="horaAtual" disabled /><br />
+                    <input type="hidden" id="HrPontEntrada" name="db_HoraEntrada" value="00" />
+                    <input type="hidden" id="HrPontoIniAlmo" name="db_HoraInicioAlmoco" value="00" />
+                    <input type="hidden" id="HrIdPontoTermAlmo" name="db_db_HoraRetornoAlmoco" />
+                    <input type="hidden" id="HrPontoIniPausa" name="db_HoraInicioPausa" />
+                    <input type="hidden" id="HrPontoTermPausa" name="db_HoraRetornoPausa" />
+                    <input type="hidden" id="HrPontoSaida" name="db_HoraSaida" />
+                    <br />
+                    <button id="salvarPontoBtn" class="btn btn-primary">Salvar Ponto</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+    <script>    
+
+        $(document).ready(function() {
+        $("#adicionarPontoBtn").click(function() {
+            $("#pontoModal").modal('show');
+        });
+
+        $("#fecharModal").click(function() {
+            $("#pontoModal").modal('hide');
+        });
+    });
+    </script>

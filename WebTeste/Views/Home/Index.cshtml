@@ -1,12 +1,18 @@
-﻿@model HomeModel;
+﻿<style>
+    .carousel-item img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+</style>
 
-<div id="carouselExample" class="carousel slide" data-ride="carousel">
+<div id="carouselExample" class="carousel slide" data-ride="carousel" style="height: 100vh;">
     <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="5">
-            <img src="~/images/refetorio.jpg" alt="Primeiro Slide" />
+            <img src="~/images/refetorio.jpg" alt="Primeiro Slide" class="d-block w-100 h-100" />
         </div>
         <div class="carousel-item" data-bs-interval="5">
-            <img src="~/images/fachada.jpg" alt="Segundo Slide" />
+            <img src="~/images/fachada.jpg" alt="Segundo Slide" class="d-block w-100 h-100" />
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
@@ -18,6 +24,7 @@
         <span class="sr-only">Próximo</span>
     </a>
 </div>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

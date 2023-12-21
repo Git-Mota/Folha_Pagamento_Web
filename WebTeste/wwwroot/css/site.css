@@ -68,14 +68,14 @@ body {
 
 .texto-centro {
     text-align: center;
-    color: white;
+    color: black;
 }
 .texto-esquerda {
     text-align: left;
-    color: white;
+    color: black;
 }
-
 .modal-content {
+    color: black;
     position: absolute;
     width: 400px;
     padding: 40px;
@@ -87,7 +87,7 @@ body {
 }
 
 .modal-header {
-    color: white; /* Substitua "#FF0000" pela cor desejada */
+    color: black; /* Substitua "#FF0000" pela cor desejada */
     text-align: center;
 
 }
