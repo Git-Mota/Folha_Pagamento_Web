@@ -17,12 +17,17 @@
 ![Tela_RegistrarPonto](https://github.com/Git-Mota/Folha_Pagamento_Web/assets/143835833/5ab75dd3-1f43-4090-abd5-bb9463a5cc68)
 <h3 align="left">Listagem de Ferias</h3>
 
-![Tela_ListagemFerias](https://github.com/Git-Mota/Folha_Pagamento_Web/assets/143835833/d66d770e-fb47-4952-8b83-e700e10253c0)
+![Tela_ListagemFerias](https://github.com/Git-Mota/Folha_Pagamento_Web/assets/143835833/590dc2b8-71e9-4fd8-a4b1-7c148a4b64b8)
+
+
+
 <h3 align="left">Demonstrativo Financeiro</h3>
 
-![Tela_DemonstrativoFinanceiro](https://github.com/Git-Mota/Folha_Pagamento_Web/assets/143835833/d3f9b4b3-b94d-4e76-b499-64e367d75319)
+![Tela_DemonstrativoFinanceiro](https://github.com/Git-Mota/Folha_Pagamento_Web/assets/143835833/12fe3c4d-b1b5-46f2-a50a-e7191f3c99bc)
+
+
 <h3 align="left">Detalhes Demonstrativos</h3>
 
-![Tela_DetalheDemonstrativos](https://github.com/Git-Mota/Folha_Pagamento_Web/assets/143835833/87eda8fc-21ac-4b68-ae85-bdc5c6f5dd8b)
+![Tela_DetalheDemonstrativos](https://github.com/Git-Mota/Folha_Pagamento_Web/assets/143835833/21deff45-5912-4b38-91a9-111c13814877)
 
  
