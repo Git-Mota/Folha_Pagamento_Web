@@ -1,4 +1,5 @@
-# Sistema Web - Folha de Pagamento. || README em desenvolvimento.
+# Sistema Web - Folha de Pagamento. || README em elaboração.
+### Fotos e dados foram descaracterizados por questão de privacidade.
 
 <h3 align="left">Login</h3>
 
